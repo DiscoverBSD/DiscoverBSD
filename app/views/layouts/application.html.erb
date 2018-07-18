@@ -16,47 +16,58 @@
   </head>
 
   <body>
-    <nav class="navbar is-black">
-      <div class="container">
-        <div class="navbar-brand">
-          <a class="navbar-item">
-            # DiscoverBSD
-          </a>
-          <span class="navbar-burger burger" data-target="navbarMenu"  onclick="document.querySelector('.navbar-menu').classList.toggle('is-active');">
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
-        </div>
-        <div id="navbarMenu" class="navbar-menu">
-          <div class="navbar-end">
-            <a class="navbar-item">
-              <span class="icon">
-                <i class="fas fa-plus-square"></i>
-              </span>
-              <span>Submit</span>
+    <div data-controller="submit-content-loader"
+     data-submit-content-loader-url="<%= new_post_path %>">
+      <nav class="navbar is-black">
+        <div class="container">
+          <div class="navbar-brand">
+            <a href="<%= root_path %>" class="navbar-item">
+              # DiscoverBSD
             </a>
-            <a href="https://twitter.com/_DiscoverBSD" class="navbar-item">
-              <span class="icon">
-                <i class="fab fa-twitter-square"></i>
-              </span>
-              <span>Twitter</span>
-            </a>
+            <span class="navbar-burger burger" data-target="navbarMenu"  onclick="document.querySelector('.navbar-menu').classList.toggle('is-active');">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </div>
+          <div id="navbarMenu" class="navbar-menu">
+            <div class="navbar-end">
+              <a class="navbar-item" data-action="submit-content-loader#load">
+                <span class="icon">
+                  <i class="fas fa-plus-square"></i>
+                </span>
+                <span>Submit</span>
+              </a>
+              <a href="https://twitter.com/_DiscoverBSD" class="navbar-item">
+                <span class="icon">
+                  <i class="fab fa-twitter-square"></i>
+                </span>
+                <span>Twitter</span>
+              </a>
+              <% if logged_in? %>
+                <a href=<%= session_path(1) %> data-method="delete" class="navbar-item is-inverted">
+                  <span class="icon">
+                    <i class="fas fa-sign-out-alt"></i>
+                  </span>
+                  <span>Logout</span>
+                </a>
+              <% end %>
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
-    <section class="section">
-      <div class="container">
-        <article class="message is-dark is-medium">
-          <div class="message-body">
-            <strong>The BSD community linklog</strong><br/>
-            Made a script? Written a blog post? Found a useful tutorial?
-            Share it with the BSD community here or just enjoy what everyone else has found!
-          </div>
-        </article>
-      </div>
-    </section>
+      </nav>
+      <section class="section" data-target="submit-content-loader.container">
+        <div class="container">
+          <article class="message is-dark is-medium">
+            <div class="message-body">
+              <strong>The BSD community linklog</strong><br/>
+              Made a script? Written a blog post? Found a useful tutorial?
+              Share it with the BSD community here or just enjoy what everyone else has found!
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
     <%= yield %>
   </body>
 </html>

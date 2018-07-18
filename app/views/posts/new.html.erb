@@ -1,0 +1,16 @@
+<div class="container">
+  <% if logged_in? %>
+    Hello there.
+  <% else %>
+    <article class="message is-dark is-medium">
+      <div class="message-body">
+        As you are not logged in, you will be redirected via Twitter to signup or sign in.
+        You will be able to add your post then.
+        <br/><br/>
+        <p class="has-text-centered">
+          <a href="/auth/twitter" class="button is-dark">Authenticate with Twitter</a>
+        </p>
+      </div>
+    </article>
+  <% end %>
+</div>

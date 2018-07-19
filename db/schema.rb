@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_17_113912) do
+ActiveRecord::Schema.define(version: 2018_07_18_124858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "posts", force: :cascade do |t|
+    t.bigint "author_id"
+    t.string "title", null: false
+    t.text "description", null: false
+    t.string "url", null: false
+    t.boolean "approved", default: false, null: false
+    t.bigint "approved_by_id"
+    t.datetime "approved_at"
+    t.boolean "declined", default: false, null: false
+    t.bigint "declined_by_id"
+    t.datetime "declined_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["approved_by_id"], name: "index_posts_on_approved_by_id"
+    t.index ["author_id"], name: "index_posts_on_author_id"
+    t.index ["declined_by_id"], name: "index_posts_on_declined_by_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "provider", null: false
@@ -26,4 +44,7 @@ ActiveRecord::Schema.define(version: 2018_07_17_113912) do
     t.index ["uid"], name: "index_users_on_uid"
   end
 
+  add_foreign_key "posts", "users", column: "approved_by_id"
+  add_foreign_key "posts", "users", column: "author_id"
+  add_foreign_key "posts", "users", column: "declined_by_id"
 end

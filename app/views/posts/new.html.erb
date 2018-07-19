@@ -1,6 +1,40 @@
 <div class="container">
   <% if logged_in? %>
-    Hello there.
+    <div class="box">
+      <%= form_for @post, data: {controller: "submit", target: "submit.form"} do |f| %>
+        <%= f.hidden_field :author_id, value: current_user.id %>
+        <div class="field">
+          <label class="label">Title</label>
+          <div class="control">
+            <%= f.text_field :title, class: 'input', placeholder: "ie. How to make your BSD awesome" %>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Url</label>
+          <div class="control">
+            <%= f.text_field :url, class: 'input', placeholder: "ie. https://example.com/make-your-bsd-awesome" %>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Description</label>
+          <div class="control">
+            <%= f.text_area :description, class: 'textarea', placeholder: "ie. In this article, Mr. Awesome talks about how to make any BSD shine like a sun. Learn the tips to create awesome scripts and securing your grandma's BSD." %>
+          </div>
+        </div>
+
+        <div class="field is-grouped is-grouped-right">
+          <div class="control">
+            <%= f.submit "Submit", class:"button is-dark", data: {action: "click->submit#submit"} %>
+          </div>
+        </div>
+
+        <div>
+          <p class="help" data-target="submit.error"></p>
+        </div>
+      <% end %>
+    </div>
   <% else %>
     <article class="message is-dark is-medium">
       <div class="message-body">

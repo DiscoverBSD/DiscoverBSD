@@ -37,6 +37,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # A Ruby gem to load environment variables from `.env`.
   gem 'dotenv-rails'
+  # Code coverage
+  gem 'simplecov', require: false
 end
 
 group :development do

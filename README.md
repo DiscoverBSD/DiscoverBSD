@@ -1,24 +1,3 @@
-# README
+# DiscoverBSD
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[![Maintainability](https://api.codeclimate.com/v1/badges/7b8d88db34c02add3394/maintainability)](https://codeclimate.com/github/DiscoverBSD/DiscoverBSD/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/7b8d88db34c02add3394/test_coverage)](https://codeclimate.com/github/DiscoverBSD/DiscoverBSD/test_coverage) [![Build Status](https://travis-ci.org/DiscoverBSD/DiscoverBSD.svg?branch=master)](https://travis-ci.org/DiscoverBSD/DiscoverBSD)

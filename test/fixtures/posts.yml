@@ -5,15 +5,39 @@ one:
   title: MyString
   description: MyText
   url: MyString
-  approved: false
+  approved: true
   approved_by: one
   approved_at: 2018-07-18 12:48:58
+  declined: false
+  created_at: 2018-07-18 12:48:58
 
 two:
-  author: two
+  author: one
+  title: MyString
+  description: MyText
+  url: MyString
+  approved: true
+  approved_by: one
+  approved_at: 2018-07-18 12:48:58
+  declined: false
+  created_at: 2018-07-16 12:48:58
+
+three:
+  author: one
+  title: MyString
+  description: MyText
+  url: MyString
+  approved: true
+  approved_by: one
+  approved_at: 2018-07-18 12:48:58
+  declined: false
+  created_at: 2018-07-16 12:48:58
+
+four:
+  author: one
   title: MyString
   description: MyText
   url: MyString
   approved: false
-  approved_by: two
-  approved_at: 2018-07-18 12:48:58
+  declined: false
+  created_at: 2018-07-16 12:48:58

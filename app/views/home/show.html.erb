@@ -1,6 +1,3 @@
-<section class="section">
-  <div class="container">
-    <h1>Home#show <i class="fas fa-thumbs-up"></i></h1>
-    <p>Find me in app/views/home/show.html.erb</p>
-  </div>
-</section>
+<div class="container">
+  <%= render partial: "posts/by_day", locals: { posts: @posts, load_posts_from: @load_posts_from } %>
+</div>

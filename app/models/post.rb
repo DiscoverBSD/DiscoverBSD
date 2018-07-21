@@ -6,4 +6,6 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :url, presence: true
   validates :description, presence: true
+
+  scope :aprroved, -> { where(approved: true) }
 end

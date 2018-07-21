@@ -1,0 +1,25 @@
+<% posts.each do |day, posts_from_day| %>
+  <div class="notification is-dark">
+    <i class="far fa-calendar-alt"></i>
+    <%= DateTime.parse(day).strftime('%d %B %Y')  %>
+  </div>
+  <% posts_from_day.each do |post| %>
+    <article class="message">
+      <div class="message-body">
+        <%= link_to post.title, post.url, class: 'is-size-5'%><br/>
+        <%= post.description %>
+      </div>
+    </article>
+  <% end %>
+<% end %>
+<% if load_posts_from %>
+  <div class="has-text-centered" data-controller="more-posts-loader"
+     data-more-posts-loader-url="<%= by_day_posts_path(from: load_posts_from) %>">
+    <a class="button is-outlined" data-action="more-posts-loader#load">load more</a>
+  </div>
+<% else %>
+  <div class="has-text-centered has-text-grey">
+    <i class="far fa-grin-stars fa-4x"></i> <br/>
+    Yay, you are at the end!
+  </div>
+<% end %>

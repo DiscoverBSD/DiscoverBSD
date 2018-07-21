@@ -16,6 +16,15 @@ class PostsController < ApplicationController
     end
   end
 
+  def by_day
+    service = NextPostsService.new(minimum_of_posts: 10, end_date: Date.parse(params[:from]), number_of_days: 5)
+    result = service.perform
+    posts_service = PostsByDayService.new(result)
+    load_posts_from = posts_service.next_date_to_load
+    posts = posts_service.group_by_day
+    render partial: "posts/by_day", locals: { posts: posts, load_posts_from: load_posts_from }
+  end
+
   private
 
   def post_params

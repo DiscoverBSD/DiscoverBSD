@@ -6,6 +6,11 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :url, presence: true
   validates :description, presence: true
+  validates :slug, presence: true, uniqueness: true
 
-  scope :aprroved, -> { where(approved: true) }
+  scope :approved, -> { where(approved: true) }
+
+  before_validation(on: :create) do
+    self.slug = SecureRandom.hex(5) unless self.slug.present?
+  end
 end

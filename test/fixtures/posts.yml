@@ -9,6 +9,7 @@ one:
   approved_by: one
   approved_at: 2018-07-18 12:48:58
   declined: false
+  slug: slugone
   created_at: 2018-07-18 12:48:58
 
 two:
@@ -20,6 +21,7 @@ two:
   approved_by: one
   approved_at: 2018-07-18 12:48:58
   declined: false
+  slug: slugtwo
   created_at: 2018-07-16 12:48:58
 
 three:
@@ -31,6 +33,7 @@ three:
   approved_by: one
   approved_at: 2018-07-18 12:48:58
   declined: false
+  slug: slugthree
   created_at: 2018-07-16 12:48:58
 
 four:
@@ -40,4 +43,5 @@ four:
   url: MyString
   approved: false
   declined: false
+  slug: slugfour
   created_at: 2018-07-16 12:48:58

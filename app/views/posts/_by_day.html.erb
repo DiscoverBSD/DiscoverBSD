@@ -6,7 +6,7 @@
   <% posts_from_day.each do |post| %>
     <article class="message">
       <div class="message-body">
-        <%= link_to post.title, post.url, class: 'is-size-5'%><br/>
+        <%= link_to post.title, post_path(slug: post.slug), class: 'is-size-5'%><br/>
         <%= post.description %>
       </div>
     </article>

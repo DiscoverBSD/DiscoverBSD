@@ -1,6 +1,7 @@
 <div class="container">
   <% if logged_in? %>
-    <div class="box">
+    <div>
+      <h1 class="title is-4">Submit new post</h1>
       <%= form_for @post, data: {controller: "submit", target: "submit.form"} do |f| %>
         <%= f.hidden_field :author_id, value: current_user.id %>
         <div class="field">
@@ -20,7 +21,7 @@
         <div class="field">
           <label class="label">Description</label>
           <div class="control">
-            <%= f.text_area :description, class: 'textarea', placeholder: "ie. In this article, Mr. Awesome talks about how to make any BSD shine like a sun. Learn the tips to create awesome scripts and securing your grandma's BSD." %>
+            <%= f.text_area :description, class: 'textarea', placeholder: "ie. In this article, Mr. Awesome talks about how to make any BSD shine like a sun. Learn the tips to create awesome scripts and securing your **grandma**'s BSD. \r\n\r\nUsage of basic markdown is allowed." %>
           </div>
         </div>
 

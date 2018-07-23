@@ -56,6 +56,20 @@
           </div>
         </div>
       </nav>
+      <% if @post.present? %>
+        <section class="section">
+          <div class="container">
+            <h1 class="title is-3"><%= @post.title %></h1>
+            <p class="subtitle is-5 has-text-gray">
+              submited <%= @post.created_at.strftime('%d %B %Y') %>
+              <a href="<%= @post.url %>">
+                <span class="icon"><i class="fas fa-external-link-alt"></i></span>
+              </a>
+            </p>
+            <p class="content is-size-5"><%= @post.description %></p>
+          </div>
+        </section>
+      <% end %>
       <section class="section" data-target="submit-content-loader.container">
         <div class="container">
           <article class="message is-dark is-medium">

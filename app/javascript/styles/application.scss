@@ -4,3 +4,7 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts/';
 @import '~@fortawesome/fontawesome-free/scss/fa-brands';
 @import '~@fortawesome/fontawesome-free/scss/fa-regular';
 @import '~@fortawesome/fontawesome-free/scss/fa-solid';
+
+.has-no-bottom-padding {
+  padding-bottom: 0;
+}

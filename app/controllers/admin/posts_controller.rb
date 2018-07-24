@@ -6,8 +6,7 @@ module Admin
       post = Post.find(params[:id])
       post.update(post_params)
       if post.valid?
-        render json: {
-          }, status: 200
+        render json: {}, status: 200
       else
         render json: {
           errors: "There seems to be some errors: #{post.errors.full_messages.join(', ')}"
@@ -19,9 +18,8 @@ module Admin
       post = Post.find(params[:id])
       post.update(post_params)
       if post.valid?
-        # Send to twitter
-        render json: {
-          }, status: 200
+        TweetPostJob.perform_later(post)
+        render json: {}, status: 200
       else
         render json: {
           errors: "There seems to be some errors: #{post.errors.full_messages.join(', ')}"

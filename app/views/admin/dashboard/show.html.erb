@@ -1,0 +1,72 @@
+<div class="section">
+  <div class="container">
+    <a href="<%= root_path %>" class="button is-dark is-pulled-right">Back to web</a>
+    <h1 class="title is-4">Posts to approve</h1>
+    <% @posts.each do |post|%>
+      <div class="box">
+        <div class="columns">
+          <div class="column is-three-quarters">
+            <%= form_for post,url: admin_post_path(post), data: {controller: "update-post"} do |f| %>
+              <div class="field">
+                <label class="label is-small">Title</label>
+                <div class="control">
+                  <%= f.text_field :title, class: 'input is-small', placeholder: "ie. How to make your BSD awesome" %>
+                </div>
+              </div>
+              <div class="field">
+                <label class="label is-small">Url</label>
+                <div class="control">
+                  <%= f.text_field :url, class: 'input is-small', placeholder: "ie. https://example.com/make-your-bsd-awesome" %>
+                </div>
+              </div>
+              <div class="field">
+                <label class="label is-small">Description</label>
+                <div class="control">
+                  <%= f.text_area :description, class: 'textarea is-small', placeholder: "ie. In this article, Mr. Awesome talks about how to make any BSD shine like a sun. Learn the tips to create awesome scripts and securing your **grandma**'s BSD. \r\n\r\nUsage of basic markdown is allowed." %>
+                </div>
+              </div>
+              <div class="field is-grouped is-grouped-right">
+                <div class="control">
+                  <%= f.submit "Update", class:"button is-dark is-small", data: {action: "click->update-post#submit"} %>
+                </div>
+              </div>
+              <div>
+                <p class="help" data-target="update-post.message"></p>
+              </div>
+            <% end %>
+          </div>
+          <div class="column">
+            <%= form_for post, url: approve_and_tweet_admin_post_path(post), method: :post, data: {controller: "approve-post"} do |f| %>
+              <%= f.hidden_field :approved_at, value: Time.zone.now %>
+              <%= f.hidden_field :approved_by_id, value: current_user.id %>
+              <%= f.hidden_field :approved, value: true %>
+              <div class="field is-grouped is-grouped-centered">
+                <div class="control">
+                  <%= f.submit "Approve and tweet", class:"button is-success is-big", data: {action: "click->approve-post#submit"} %>
+                </div>
+              </div>
+              <div>
+                <p class="help" data-target="approve-post.message"></p>
+              </div>
+            <% end %>
+
+            <%= form_for post, url: admin_post_path(post), data: {controller: "decline-post"} do |f| %>
+              <%= f.hidden_field :declined_at, value: Time.zone.now %>
+              <%= f.hidden_field :declined_by_id, value: current_user.id %>
+              <%= f.hidden_field :declined, value: true %>
+              <div>
+                <p class="help" data-target="decline-post.message"></p>
+              </div>
+              <div class="field is-grouped is-grouped-centered">
+                <div class="control">
+                  <%= f.submit "Decline", class:"button is-danger is-big", data: {action: "click->decline-post#submit"} %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+    <% end %>
+  </div>
+</div>

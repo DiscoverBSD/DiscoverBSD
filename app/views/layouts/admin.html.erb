@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DiscoverBSD Administration</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+
+    <%= javascript_pack_tag 'application' %>
+    <%= stylesheet_pack_tag 'application' %>
+  </head>
+
+  <body>
+    <%= yield %>
+    <footer class="footer has-background-white">
+      <div class="content has-text-centered">
+        <p>
+          created with <i class="fas fa-heart"></i> by <a href="https://hovancik.net">Jan Hovancik</a>.
+          The source code is availabe on <a href="https://github.com/DiscoverBSD/DiscoverBSD">Github</a>.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

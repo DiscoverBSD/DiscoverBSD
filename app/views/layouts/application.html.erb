@@ -44,6 +44,14 @@
                 </span>
                 <span>Twitter</span>
               </a>
+              <% if admin? %>
+                <a href=<%= admin_dashboard_show_path %> class="navbar-item is-inverted">
+                  <span class="icon">
+                    <i class="fas fa-unlock-alt"></i>
+                  </span>
+                  <span>Admin area</span>
+                </a>
+              <% end %>
               <% if logged_in? %>
                 <a href=<%= session_path(1) %> data-method="delete" class="navbar-item is-inverted">
                   <span class="icon">

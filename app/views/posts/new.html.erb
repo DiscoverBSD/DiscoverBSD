@@ -39,12 +39,21 @@
   <% else %>
     <article class="message is-dark is-medium">
       <div class="message-body">
-        As you are not logged in, you will be redirected via Twitter to signup or sign in.
-        You will be able to add your post then.
-        <br/><br/>
-        <p class="has-text-centered">
-          <a href="/auth/twitter" class="button is-dark">Authenticate with Twitter</a>
+        <p>
+          As you are not logged in, you will be redirected via Twitter to signup or sign in.
+          You will be able to add your post then.
         </p>
+        <div data-controller="terms">
+          <form class="has-text-centered">
+            <button formaction="/auth/twitter" class="button is-dark" data-target="terms.auth">Authenticate with Twitter</button>
+          </form>
+          <p>
+            <label class="checkbox is-size-6 has-text-right">
+              <input type="checkbox" data-target="terms.checkbox" data-action="terms#setDisabled">
+              I agree to the <a href="https://github.com/DiscoverBSD/DiscoverBSD/blob/master/doc/TERMS.md" target="_blank">Terms and Conditions</a> and <a href="https://github.com/DiscoverBSD/DiscoverBSD/blob/master/doc/PRIVACY.md" target="_blank">Privacy Policy</a>.
+            </label>
+          </p>
+        </div>
       </div>
     </article>
   <% end %>

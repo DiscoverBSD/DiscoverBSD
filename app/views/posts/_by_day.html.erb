@@ -6,7 +6,11 @@
   <% posts_from_day.each do |post| %>
     <article class="message">
       <div class="message-body">
-        <%= link_to post.title, post_path(slug: post.slug), class: 'is-size-5'%><br/>
+        <%= link_to post.title, post_path(slug: post.slug), class: 'is-size-5'%>
+        &nbsp;
+        <a href="<%= post.url + "?utm_source=discoverbsd" %>">
+          <i class="fas fa-external-link-alt"></i>
+        </a>
         <%= markdown_to_html(post.description).html_safe %>
       </div>
     </article>

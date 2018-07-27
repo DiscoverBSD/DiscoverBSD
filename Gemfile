@@ -73,3 +73,6 @@ gem 'twitter', '~> 6.2'
 # Background jobs
 gem 'delayed_job', '~> 4.1', '>= 4.1.5'
 gem 'delayed_job_active_record'
+
+# Error tracking
+gem 'rollbar'

@@ -15,9 +15,9 @@ class PostsByDayServiceTest < ActiveSupport::TestCase
 
   test "it gives correct value for some posts" do
     service = PostsByDayService.new([posts(:one), posts(:two)])
-    assert_equal '2018-07-15', service.next_date_to_load
-    assert_equal ["2018-07-18","2018-07-16"], service.group_by_day.keys
-    assert_equal [posts(:one)], service.group_by_day["2018-07-18"]
-    assert_equal [posts(:two)], service.group_by_day["2018-07-16"]
+    assert_equal (Time.zone.now - 3.days).strftime('%F'), service.next_date_to_load
+    assert_equal [Time.zone.now.strftime('%F'),(Time.zone.now - 2.days).strftime('%F')], service.group_by_day.keys
+    assert_equal [posts(:one)], service.group_by_day[Time.zone.now.strftime('%F')]
+    assert_equal [posts(:two)], service.group_by_day[(Time.zone.now - 2.days).strftime('%F')]
   end
 end

@@ -14,6 +14,8 @@
 
     <%= javascript_pack_tag 'application' %>
     <%= stylesheet_pack_tag 'application' %>
+
+    <%= auto_discovery_link_tag(:atom, feeds_posts_default_url, title: 'DiscoverBSD Atom feed') %>
   </head>
 
   <body>

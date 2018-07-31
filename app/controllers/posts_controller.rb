@@ -25,6 +25,11 @@ class PostsController < ApplicationController
     render partial: "posts/by_day", locals: { posts: posts, load_posts_from: load_posts_from }
   end
 
+  def feed
+    @posts = Post.approved.order(created_at: :desc).limit(50)
+    render 'posts/feed.atom', layout: false
+  end
+
   private
 
   def post_params

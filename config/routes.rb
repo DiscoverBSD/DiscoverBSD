@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     get :by_day, on: :collection
   end
   get '/p/:slug', to: 'home#show', as: :post
+  get '/feeds/posts/default', to: 'posts#feed'
   get '/auth/:provider/callback', to: 'sessions#create'
   resources :sessions, only: [:destroy]
   namespace :admin do

@@ -6,8 +6,6 @@ class HomeController < ApplicationController
     @load_posts_from = posts_service.next_date_to_load
     @posts = posts_service.group_by_day
     @post = Post.approved.find_by(slug: params[:slug]) if params[:slug].present?
-    if admin?
-      @waiting = Post.not_yet_approved.size
-    end
+    @waiting = Post.not_yet_approved.size if admin?
   end
 end

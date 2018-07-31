@@ -1,5 +1,5 @@
 atom_feed do |feed|
-  feed.title("DiscoverBSD - The BSD community linklog")
+  feed.title('DiscoverBSD - The BSD community linklog')
   feed.updated(@posts[0].created_at) if @posts.length > 0
 
   @posts.each do |post|
@@ -8,7 +8,7 @@ atom_feed do |feed|
       entry.content(markdown_to_html(post.description).html_safe, type: 'html')
 
       entry.author do |author|
-        author.name("DiscoverBSD")
+        author.name('DiscoverBSD')
       end
     end
   end

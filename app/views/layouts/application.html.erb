@@ -47,12 +47,18 @@
                 </span>
                 <span>Twitter</span>
               </a>
+              <a href="<%= feeds_posts_default_url %>" class="navbar-item">
+                <span class="icon">
+                  <i class="fas fa-rss-square"></i>
+                </span>
+                <span>Feed</span>
+              </a>
               <% if admin? %>
                 <a href=<%= admin_dashboard_show_path %> class="navbar-item is-inverted">
                   <span class="icon">
                     <i class="fas fa-unlock-alt"></i>
                   </span>
-                  <span>Admin area</span>
+                  <span>Admin area (<%= @waiting %>)</span>
                 </a>
               <% end %>
               <% if logged_in? %>

@@ -76,3 +76,6 @@ gem 'delayed_job_active_record'
 
 # Error tracking
 gem 'rollbar'
+
+# Heroku Ruby Metrics
+gem 'barnes'

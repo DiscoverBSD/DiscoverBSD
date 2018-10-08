@@ -15,6 +15,8 @@ For a better experience, while using our Service, I may require you to provide u
 
 The website may use third party services that may collect information used to identify you.
 
+When you visit our site, we will store: the website from which you visited us from, the parts of our site you visit, the date and duration of your visit, your anonymised IP address, information from the device (device type, operating system, screen resolution, language, country you are located in, and web browser type) you used during your visit, and more. We process this usage data in Matomo Analytics for statistical purposes, to improve our site and to recognize and stop any misuse.
+
 **Log Data**
 
 I want to inform you that whenever you use my Service, in a case of an error in the website I collect data and information (through third party products) called Log Data. This Log Data may include information such as your device Internet Protocol (“IP”) address, device name, operating system version, the configuration of the website when utilizing my Service, the time and date of your use of the Service, and other statistics.

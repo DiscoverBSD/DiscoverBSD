@@ -69,6 +69,8 @@ gem 'redcarpet', '~> 3.3', '>= 3.3.4'
 
 # Sending tweets to Twitter
 gem 'twitter', '~> 6.2'
+# Sending to Mastodon
+gem 'mastodon-api', git: 'https://github.com/tootsuite/mastodon-api.git', require: 'mastodon'
 
 # Background jobs
 gem 'delayed_job', '~> 4.1', '>= 4.1.5'

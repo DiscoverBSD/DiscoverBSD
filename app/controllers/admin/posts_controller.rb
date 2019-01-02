@@ -19,6 +19,7 @@ module Admin
       post.update(post_params)
       if post.valid?
         TweetPostJob.perform_later(post)
+        TootPostJob.perform_later(post)
         render json: {}, status: 200
       else
         render json: {

@@ -1,5 +1,5 @@
 # Toot post title and url to Mastodon
-class TootPostJob< ApplicationJob
+class TootPostJob < ApplicationJob
   def perform(post)
     return unless ENV['TOOT_POSTS'].present?
     client.create_status("#{post.title} \n\n https://discoverbsd.com/p/#{post.slug}")

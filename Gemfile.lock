@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/tootsuite/mastodon-api.git
+  revision: 189deb8219ae1ce7c34386d9ad1ca7e4a5fec62c
+  specs:
+    mastodon-api (1.2.0)
+      addressable (~> 2.5)
+      buftok
+      http (~> 3.0)
+      oj (~> 3.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -132,6 +142,7 @@ GEM
     nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
     oauth (0.5.4)
+    oj (3.7.6)
     omniauth (1.8.1)
       hashie (>= 3.4.6, < 3.6.0)
       rack (>= 1.6.2, < 3)
@@ -266,6 +277,7 @@ DEPENDENCIES
   dotenv-rails
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
+  mastodon-api!
   omniauth-twitter
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)

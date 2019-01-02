@@ -2,7 +2,7 @@
 class TweetPostJob< ApplicationJob
   def perform(post)
     return unless ENV['TWEET_POSTS'].present?
-    client.update("#{post.title} \n\n https://discoverbsd.com/p/#{post.slug}")
+    client.update("#{post.title} \n\nhttps://discoverbsd.com/p/#{post.slug}")
   end
 
   private

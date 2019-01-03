@@ -16,13 +16,13 @@
   <meta name="twitter:image" content="<%= motif_image_url(post) %>">
   <!-- Twitter - Article -->
   <!-- Open Graph general (Facebook, Pinterest & Google+) -->
-  <meta name="og:title" content="<%= post.title %>">
-  <meta name="og:description" content="<%= post.description[0..200] %>...">
-  <meta name="og:image" content="<%= motif_image_url(post) %>">
-  <meta name="og:type" content="article">
+  <meta property="og:title" content="<%= post.title %>">
+  <meta property="og:description" content="<%= post.description[0..200] %>...">
+  <meta property="og:image" content="<%= motif_image_url(post) %>">
+  <meta property="og:type" content="article">
   <!-- Open Graph - Article -->
-  <meta name="article:section" content="Technology">
-  <meta name="article:published_time" content="<%= post.created_at %>">
+  <meta property="article:section" content="Technology">
+  <meta property="article:published_time" content="<%= post.created_at %>">
 <% else %>
   <!-- COMMON TAGS -->
   <title>DiscoverBSD - The BSD community linklog</title>
@@ -41,8 +41,8 @@
   <meta name="twitter:image" content="<%= motif_image_url(post) %>">
   <!-- Twitter - Article -->
   <!-- Open Graph general (Facebook, Pinterest & Google+) -->
-  <meta name="og:title" content="DiscoverBSD - The BSD community linklog">
-  <meta name="og:description" content="Made a script? Written a blog post? Found a useful tutorial? Share it with the BSD community here or just enjoy what everyone else has found!">
-  <meta name="og:image" content="<%= motif_image_url(post) %>">
-  <meta name="og:type" content="article">
+  <meta property="og:title" content="DiscoverBSD - The BSD community linklog">
+  <meta property="og:description" content="Made a script? Written a blog post? Found a useful tutorial? Share it with the BSD community here or just enjoy what everyone else has found!">
+  <meta property="og:image" content="<%= motif_image_url(post) %>">
+  <meta property="og:type" content="article">
 <% end %>

@@ -20,6 +20,7 @@
   <meta property="og:description" content="<%= post.description[0..200] %>...">
   <meta property="og:image" content="<%= motif_image_url(post) %>">
   <meta property="og:type" content="article">
+  <meta property="og:url" content="<%= post_url(post) %>">
   <!-- Open Graph - Article -->
   <meta property="article:section" content="Technology">
   <meta property="article:published_time" content="<%= post.created_at %>">
@@ -45,4 +46,6 @@
   <meta property="og:description" content="Made a script? Written a blog post? Found a useful tutorial? Share it with the BSD community here or just enjoy what everyone else has found!">
   <meta property="og:image" content="<%= motif_image_url(post) %>">
   <meta property="og:type" content="article">
+  <meta property="og:url" content="<%= root_url %>">
+
 <% end %>

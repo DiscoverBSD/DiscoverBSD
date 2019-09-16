@@ -1,4 +1,3 @@
-
 module.exports = function(api) {
   var validEnv = ['development', 'test', 'production']
   var currentEnv = api.env()
@@ -31,6 +30,7 @@ module.exports = function(api) {
         {
           forceAllTransforms: true,
           useBuiltIns: 'entry',
+          corejs: 3,
           modules: false,
           exclude: ['transform-typeof-symbol']
         }
@@ -57,7 +57,8 @@ module.exports = function(api) {
         require('@babel/plugin-transform-runtime').default,
         {
           helpers: false,
-          regenerator: true
+          regenerator: true,
+          corejs: false
         }
       ],
       [

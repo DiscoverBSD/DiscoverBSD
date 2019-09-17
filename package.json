@@ -2,12 +2,12 @@
   "name": "discoverbsd",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.4.2",
-    "@rails/webpacker": "^4.0.2",
-    "bulma": "^0.7.2",
-    "stimulus": "^1.1.0"
+    "@fortawesome/fontawesome-free": "^5.10.2",
+    "@rails/webpacker": "^4.0.7",
+    "bulma": "^0.7.5",
+    "stimulus": "^1.1.1"
   },
   "devDependencies": {
-    "webpack-dev-server": "3.2.1"
+    "webpack-dev-server": "^3.8.1"
   }
 }

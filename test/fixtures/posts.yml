@@ -45,3 +45,15 @@ four:
   declined: false
   slug: slugfour
   created_at: <%= Time.zone.now - 2.days %>
+
+five:
+  author: one
+  title: MyString
+  description: MyText
+  url: MyString
+  approved: true
+  approved_by: one
+  approved_at: <%= Time.zone.now - 15.days %>
+  declined: false
+  slug: slugfive
+  created_at: <%= Time.zone.now - 15.days %>

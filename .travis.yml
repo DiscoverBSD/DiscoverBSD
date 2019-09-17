@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 2.5.1
+  - 2.6.4
 before_install:
   - gem update --system
 cache:
@@ -10,7 +10,7 @@ cache:
   yarn: true
 install:
   - bundle install
-  - nvm install v9.11.1
+  - nvm install v12
   - node -v
   - npm i -g yarn
   - yarn

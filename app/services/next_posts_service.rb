@@ -32,11 +32,11 @@ class NextPostsService
   # posts based on number of posts
   #  plus we also include all posts from last day
   def posts_from_minumum_of_posts
-    end_date = @end_date.end_of_day
-    oldest_post = Post.approved.where('created_at < ?', end_date)
+    oldest_post = Post.approved.where('created_at > ?', @end_date.beginning_of_day)
       .limit(@minimum_of_posts).last
     return [] unless oldest_post.present?
     start_date = oldest_post.created_at.beginning_of_day
+    end_date = @end_date.end_of_day
     @posts_from_minumum_of_posts ||= Post.approved.where(created_at: start_date..end_date).order(created_at: :desc)
   end
 end

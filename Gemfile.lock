@@ -144,7 +144,7 @@ GEM
     multi_json (1.13.1)
     multipart-post (2.1.1)
     naught (1.1.0)
-    nio4r (2.5.1)
+    nio4r (2.5.2)
     nokogiri (1.10.5)
       mini_portile2 (~> 2.4.0)
     oauth (0.5.4)
@@ -160,7 +160,7 @@ GEM
       rack
     pg (1.1.4)
     public_suffix (4.0.1)
-    puma (4.1.1)
+    puma (4.3.1)
       nio4r (~> 2.0)
     rack (2.0.8)
     rack-proxy (0.6.5)
@@ -290,7 +290,7 @@ DEPENDENCIES
   mastodon-api!
   omniauth-twitter
   pg (>= 0.18, < 2.0)
-  puma (~> 4.1)
+  puma (~> 4.3)
   rails (~> 6.0)
   redcarpet (~> 3.5)
   rollbar

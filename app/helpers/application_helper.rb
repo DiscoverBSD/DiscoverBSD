@@ -5,7 +5,7 @@ module ApplicationHelper
           else
             root_url
           end
-    "https://motif.imgix.com/i?url=#{u url}&image_url=#{u image_url('/img/gratisography-330H.jpg') }&color=6e6e6e&logo_url=&logo_alignment=bottom%2Cright&text_alignment=top%2Cleft&logo_padding=0&font_family=Avenir%20Next%20Demi%2CBold&text_color=ffffff"
+    "https://motif.imgix.com/i?url=#{u url}&image_url=#{u image_url('/img/nik-shuliahin-rkFIIE9PxH0-unsplash.jpg') }&color=88898b&logo_url=https%3A%2F%2Fi.ibb.co%2FZTr5683%2Fdiscoverbsd.png&logo_alignment=top%2Ccenter&text_alignment=bottom%2Ccenter&logo_padding=70&font_family=Avenir%20Next%20Demi%2CBold&text_color=1d1d1d"
   end
 
   def add_utm_source url

@@ -1,4 +1,9 @@
 version: '3'
+networks:
+  default:
+    external:
+      name: my-network
+      # https://stackoverflow.com/a/53085494
 services:
   webpacker:
     build: .
@@ -9,10 +14,14 @@ services:
       - .:/webpacker-example-app
     ports:
       - '3035:3035'
+    networks:
+      - default
   db:
     image: postgres
     ports:
       - "5431:5432"
+    networks:
+      - default
   web:
     build: .
     command: bash -c "rm -rf ./tmp/pids/server.pid && bundle exec rails s -p 4000 -b '0.0.0.0'"
@@ -22,3 +31,5 @@ services:
       - "4000:4000"
     depends_on:
       - db
+    networks:
+      - default

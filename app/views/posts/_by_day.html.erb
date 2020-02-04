@@ -1,4 +1,4 @@
-<% posts.each do |day, posts_from_day| %>
+<% posts.each_with_index do |(day, posts_from_day), index| %>
   <div class="notification is-dark">
     <i class="far fa-calendar-alt"></i>
     <%= DateTime.parse(day).strftime('%d %B %Y')  %>
@@ -12,6 +12,17 @@
           <i class="fas fa-external-link-alt"></i>
         </a>
         <%= markdown_to_html(post.description).html_safe %>
+      </div>
+    </article>
+  <% end %>
+  <% if index === 1 %>
+    <article class="message is-dark is-medium">
+      <div class="message-body">
+        <strong>Enjoying DiscoverBSD? There is more...</strong><br/><br/>
+        Subscribe to <a href="https://bsdweekly.com">BSD Weekly</a>, our free, once–weekly e-mail round-up of BSD news and articles.
+        It is currated from your content on DiscoverBSD and <a href="https://bsdsec.net">BSDSec</a> (a deadsimple BSD Security Advisories and Announcements).
+        <br/><br/>
+        You can also support the work on <a href="https://patreon.com/hovancik">Patreon</a>.
       </div>
     </article>
   <% end %>

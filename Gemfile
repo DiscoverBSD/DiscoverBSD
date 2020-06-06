@@ -68,7 +68,7 @@ gem 'omniauth-twitter'
 gem 'redcarpet', '~> 3.5'
 
 # Sending tweets to Twitter
-gem 'twitter', '~> 6.2'
+gem 'twitter', '~> 7'
 # Sending to Mastodon
 gem 'mastodon-api', git: 'https://github.com/tootsuite/mastodon-api.git', require: 'mastodon'
 

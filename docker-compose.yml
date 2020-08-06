@@ -1,9 +1,5 @@
+
 version: '3'
-networks:
-  default:
-    external:
-      name: my-network
-      # https://stackoverflow.com/a/53085494
 services:
   webpacker:
     build: .
@@ -11,17 +7,17 @@ services:
       - '.env.docker'
     command: ./bin/webpack-dev-server
     volumes:
-      - .:/webpacker-example-app
+      - .:/discoverbsd
     ports:
       - '3035:3035'
-    networks:
-      - default
+    network_mode: "bridge"
   db:
     image: postgres
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
     ports:
       - "5431:5432"
-    networks:
-      - default
+    network_mode: "bridge"
   web:
     build: .
     command: bash -c "rm -rf ./tmp/pids/server.pid && bundle exec rails s -p 4000 -b '0.0.0.0'"
@@ -31,5 +27,6 @@ services:
       - "4000:4000"
     depends_on:
       - db
-    networks:
-      - default
+    links:
+      - db:db
+    network_mode: "bridge"

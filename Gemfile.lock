@@ -199,7 +199,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    redcarpet (3.5.0)
+    redcarpet (3.5.1)
     regexp_parser (1.7.1)
     rollbar (2.27.0)
     rubyzip (2.3.0)

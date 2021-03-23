@@ -1,4 +1,4 @@
-FROM ruby:2.6.4
+FROM ruby:2.7.2
 RUN apt-get update -qq
 
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
@@ -15,7 +15,7 @@ ADD Gemfile Gemfile.lock /discoverbsd/
 
 RUN bundle install
 
-#ADD package.json yarn.lock /discoverbsd
-#RUN yarn
+ADD package.json yarn.lock /discoverbsd/
+RUN yarn
 
-ADD . /discoverbsd
+ADD . /discoverbsd/

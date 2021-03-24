@@ -39,6 +39,12 @@
                   <%= f.text_area :description, class: 'textarea is-small', placeholder: "ie. In this article, Mr. Awesome talks about how to make any BSD shine like a sun. Learn the tips to create awesome scripts and securing your **grandma**'s BSD. \r\n\r\nUsage of basic markdown is allowed." %>
                 </div>
               </div>
+              <div class="field">
+                <label class="label is-small">Newsletter Part</label>
+                <div class="control">
+                  <%= f.select :newsletter_part, Post::NEWSLETTER_PARTS, class: 'select is-small' %>
+                </div>
+              </div>
               <div class="field is-grouped is-grouped-right">
                 <div class="control">
                   <%= f.submit "Update", class:"button is-dark is-small", data: {action: "click->update-post#submit"} %>

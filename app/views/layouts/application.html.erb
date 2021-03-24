@@ -84,6 +84,12 @@
                   </span>
                   <span>Admin area (<%= @waiting %>)</span>
                 </a>
+                <a href=<%= admin_newsletter_show_path %> class="navbar-item is-inverted">
+                  <span class="icon">
+                    <i class="fas fa-newspaper"></i>
+                  </span>
+                  <span>Newsletter</span>
+                </a>
               <% end %>
               <% if logged_in? %>
                 <a href=<%= session_path(1) %> data-method="delete" class="navbar-item is-inverted">

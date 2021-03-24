@@ -33,7 +33,8 @@ module Admin
     def post_params
       params.require(:post).permit(:title, :url, :description,
         :approved, :approved_by_id, :approved_at,
-        :declined, :declined_by_id, :declined_at)
+        :declined, :declined_by_id, :declined_at,
+      :newsletter_part)
     end
   end
 end

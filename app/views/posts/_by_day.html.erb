@@ -8,7 +8,7 @@
       <div class="message-body">
         <%= link_to post.title, post_path(slug: post.slug), class: 'is-size-5'%>
         &nbsp;
-        <a href="<%= add_utm_source(post.url) %>">
+        <a href="<%= discoverbsd_utm_source_url(post.url) %>">
           <i class="fas fa-external-link-alt"></i>
         </a>
         <%= markdown_to_html(post.description).html_safe %>

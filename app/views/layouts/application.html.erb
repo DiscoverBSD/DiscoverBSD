@@ -109,7 +109,7 @@
             <h1 class="title is-3"><%= @post.title %></h1>
             <p class="subtitle is-5 has-text-gray">
               submited <%= @post.created_at.strftime('%d %B %Y') %>
-              <a href="<%= add_utm_source(@post.url) %>">
+              <a href="<%= discoverbsd_utm_source_url(@post.url) %>">
                 <span class="icon"><i class="fas fa-external-link-alt"></i></span>
               </a>
             </p>

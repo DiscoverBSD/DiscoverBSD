@@ -1,6 +1,11 @@
 <div class="section">
   <div class="container">
-    <a href="<%= root_path %>" class="button is-dark">Back to web</a>
+    <div class="message">
+      <div class="message-body">
+        The newest article from: <%= @newest %>. The oldest from: <%= @oldest %>.
+        <a href="<%= root_path %>" class="button is-dark is-pulled-right">Back to web</a>
+      </div>
+    </div>
   </div>
   <div class="container content" >
     <% if @posts['main'].present? %>

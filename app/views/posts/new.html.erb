@@ -40,13 +40,18 @@
     <article class="message is-dark is-medium">
       <div class="message-body">
         <p>
-          As you are not logged in, you will be redirected via Twitter to signup or sign in.
+          As you are not logged in, you will be redirected via Twitter or Github to signup or sign in.
           You will be able to add your post then.
         </p>
         <div data-controller="terms">
-          <form class="has-text-centered">
-            <button formaction="/auth/twitter" class="button is-dark" data-target="terms.auth">Authenticate with Twitter</button>
-          </form>
+          <div class="buttons is-centered">
+            <form class="has-text-centered">
+              <button formaction="/auth/twitter" class="button is-dark" data-target="terms.auth">Authenticate with Twitter</button>
+            </form>
+            <form class="has-text-centered">
+              <button formaction="/auth/github" class="button is-dark" data-target="terms.auth">Authenticate with Github</button>
+            </form>
+          </div>
           <p>
             <label class="checkbox is-size-6 has-text-right">
               <input type="checkbox" data-target="terms.checkbox" data-action="terms#setDisabled">

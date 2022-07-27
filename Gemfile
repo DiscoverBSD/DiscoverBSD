@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.6'
+ruby '3.1.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0'
@@ -83,3 +83,8 @@ gem 'rollbar'
 
 # Heroku Ruby Metrics
 gem 'barnes'
+
+# https://stackoverflow.com/questions/71851775/rails-6-1-5-uninitialized-constant-mailtestmailer
+gem "net-smtp" # to send email
+gem "net-imap" # for rspec
+gem "net-pop"  # for rspec

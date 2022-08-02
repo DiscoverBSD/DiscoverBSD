@@ -82,7 +82,7 @@
       "enabled": false
     },
     "git-legal": {
-      "enabled": true
+      "enabled": false
     },
     "gnu-complexity": {
       "enabled": false

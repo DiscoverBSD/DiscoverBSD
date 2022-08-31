@@ -64,7 +64,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Auth via twitter
 gem 'omniauth-twitter'
 gem 'omniauth-github'
-gem 'omniauth', '~> 1.9', '>= 1.9.1'
+gem 'omniauth', '~> 1.9'
 
 # Markdown for posts
 gem 'redcarpet', '~> 3.5'

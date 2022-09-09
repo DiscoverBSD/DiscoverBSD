@@ -81,8 +81,8 @@ gem 'delayed_job_active_record'
 # Error tracking
 gem 'rollbar'
 
-# Heroku Ruby Metrics
-gem 'barnes'
+# # Heroku Ruby Metrics
+# gem 'barnes'
 
 # https://stackoverflow.com/questions/71851775/rails-6-1-5-uninitialized-constant-mailtestmailer
 gem "net-smtp" # to send email

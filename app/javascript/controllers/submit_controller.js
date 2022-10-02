@@ -1,10 +1,11 @@
 import { Controller } from 'stimulus'
 
 export default class extends Controller {
-  static targets = [ 'error', 'form' ]
+  static targets = [ 'error', 'form', 'button' ]
 
   async submit (event) {
     event.preventDefault()
+    this.buttonTarget.setAttribute('disabled', '')
     let form = this.formTarget
     let body = new FormData(form)
     let action = form.action
@@ -21,8 +22,10 @@ export default class extends Controller {
           We will try to review and approve your post ASAP.
         </div>
       `
+      this.buttonTarget.removeAttribute('disabled')
     } else {
       this.errorTarget.textContent = json.errors
+      this.buttonTarget.removeAttribute('disabled')
     }
   }
 

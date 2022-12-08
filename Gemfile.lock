@@ -168,7 +168,7 @@ GEM
       net-protocol
       timeout
     nio4r (2.5.8)
-    nokogiri (1.13.8-x86_64-linux)
+    nokogiri (1.13.10-x86_64-linux)
       racc (~> 1.4)
     oauth (0.5.10)
     oauth2 (2.0.6)
@@ -198,7 +198,7 @@ GEM
     public_suffix (4.0.7)
     puma (4.3.12)
       nio4r (~> 2.0)
-    racc (1.6.0)
+    racc (1.6.1)
     rack (2.2.4)
     rack-proxy (0.7.2)
       rack

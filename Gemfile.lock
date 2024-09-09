@@ -245,8 +245,8 @@ GEM
       ffi (~> 1.0)
     redcarpet (3.6.0)
     regexp_parser (2.9.0)
-    rexml (3.2.8)
-      strscan (>= 3.0.9)
+    rexml (3.3.6)
+      strscan
     rollbar (3.5.1)
     rubyzip (2.3.2)
     sass-rails (6.0.0)

@@ -68,4 +68,19 @@ Rollbar.configure do |config|
   # setup for Heroku. See:
   # https://devcenter.heroku.com/articles/deploying-to-a-custom-rails-environment
   config.environment = ENV['ROLLBAR_ENV'].presence || Rails.env
+
+  # ignore specific exceptions
+  BLACKLISTED_REGEX = %r{
+    ^/wp-login/|
+    ^/\.well-known/|
+  }x.freeze
+  
+  handler = proc do |options|
+    url = options[:exception].message[/.*"([^"]*)"/,1]
+    if options[:exception].is_a?(ActionController::RoutingError)
+      raise Rollbar::Ignore if url =~ BLACKLISTED_REGEX
+    end
+  end
+  
+  config.before_process << handler
 end

@@ -88,3 +88,6 @@ gem 'rollbar'
 gem 'net-smtp' # to send email
 gem 'net-imap' # for rspec
 gem 'net-pop'  # for rspec
+
+# Try removing later, not sure if needed, some warning
+gem 'mutex_m'

@@ -70,7 +70,7 @@ gem 'omniauth', '~> 1.9', '>= 1.9.1'
 gem 'redcarpet', '~> 3.5'
 
 # Sending tweets to Twitter
-gem 'twitter', '~> 7'
+gem 'x', '~> 0.14.1'
 # Sending to Mastodon
 gem 'mastodon-api', git: 'https://github.com/tootsuite/mastodon-api.git', require: 'mastodon'
 
@@ -89,3 +89,5 @@ gem 'net-smtp' # to send email
 gem 'net-imap' # for rspec
 gem 'net-pop'  # for rspec
 
+# Try removing later, not sure if needed, some warning
+gem 'mutex_m'

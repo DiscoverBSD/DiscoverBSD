@@ -11,11 +11,9 @@ The terms used in this Privacy Policy have the same meanings as in our Terms and
 
 **Information Collection and Use**
 
-For a better experience, while using our Service, I may require you to provide us with certain personally identifiable information, including but not limited to Twitter ID.
+For a better experience, while using our Service, I may require you to provide us with certain personally identifiable information, including but not limited to Twitter ID or Github ID, while signing in to website.
 
 The website may use third party services that may collect information used to identify you.
-
-When you visit our site, we will store: the website from which you visited us from, the parts of our site you visit, the date and duration of your visit, your anonymised IP address, information from the device (device type, operating system, screen resolution, language, country you are located in, and web browser type) you used during your visit, and more. We process this usage data in Matomo Analytics for statistical purposes, to improve our site and to recognize and stop any misuse.
 
 **Log Data**
 

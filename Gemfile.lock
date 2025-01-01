@@ -104,6 +104,7 @@ GEM
       dotenv (= 3.1.7)
       railties (>= 6.1)
     erubi (1.13.1)
+    event_stream_parser (1.0.0)
     execjs (2.10.0)
     faraday (2.12.2)
       faraday-net_http (>= 2.0, < 3.5)
@@ -187,6 +188,14 @@ GEM
     oj (3.16.9)
       bigdecimal (>= 3.0)
       ostruct (>= 0.2)
+    omniai (1.9.2)
+      event_stream_parser
+      http
+      zeitwerk
+    omniai-mistral (1.9.3)
+      event_stream_parser
+      omniai
+      zeitwerk
     omniauth (1.9.2)
       hashie (>= 3.4.6)
       rack (>= 1.6.2, < 3)
@@ -337,6 +346,7 @@ DEPENDENCIES
   net-imap
   net-pop
   net-smtp
+  omniai-mistral
   omniauth (~> 1.9, >= 1.9.1)
   omniauth-github
   omniauth-twitter

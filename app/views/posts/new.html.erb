@@ -1,27 +1,42 @@
 <div class="container">
   <% if logged_in? %>
-    <div>
+    <div data-controller="gen">
       <h1 class="title is-4">Submit new post</h1>
       <%= form_for @post, data: {controller: "submit", target: "submit.form"} do |f| %>
         <%= f.hidden_field :author_id, value: current_user.id %>
+        
+        <div class="field is-grouped">
+          <label class="label">Url</label>
+          <div class="control is-expanded">
+            <%= f.text_field :url, class: 'input', placeholder: "ie. https://example.com/make-your-bsd-awesome", 
+            data: { target: "gen.url"} %>
+          </div>
+          <p class="control">
+            <button class="button is-dark"  data-action="click->gen#generate" data-target="gen.button">
+              <span class="icon">
+                <i class="fas fa-magic"></i>
+              </span>
+              <span>Generate from URL</span>
+            </button>          
+          </p>
+        </div>
+        <div>
+          <p class="help is-right" data-target="gen.message"></p>
+        </div>
+        
         <div class="field">
           <label class="label">Title</label>
           <div class="control">
-            <%= f.text_field :title, class: 'input', placeholder: "ie. How to make your BSD awesome" %>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="label">Url</label>
-          <div class="control">
-            <%= f.text_field :url, class: 'input', placeholder: "ie. https://example.com/make-your-bsd-awesome" %>
+            <%= f.text_field :title, class: 'input', placeholder: "ie. How to make your BSD awesome", 
+            data: { target: "gen.title"} %>
           </div>
         </div>
 
         <div class="field">
           <label class="label">Description</label>
           <div class="control">
-            <%= f.text_area :description, class: 'textarea', placeholder: "ie. In this article, Mr. Awesome talks about how to make any BSD shine like a sun. Learn the tips to create awesome scripts and securing your **grandma**'s BSD. \r\n\r\nUsage of basic markdown is allowed." %>
+            <%= f.text_area :description, class: 'textarea', placeholder: "ie. In this article, Mr. Awesome talks about how to make any BSD shine like a sun. Learn the tips to create awesome scripts and securing your **grandma**'s BSD. \r\n\r\nUsage of basic markdown is allowed.", 
+            data: { target: "gen.description"} %>
           </div>
         </div>
 
@@ -34,6 +49,9 @@
         <div>
           <p class="help" data-target="submit.error"></p>
         </div>
+      <% end %>
+      <%= form_with url: home_gen_path, data: {target: 'gen.form'} do |form| %>
+        <%= form.text_field :url, data: {target: 'gen.suburl'}, class: 'is-invisible' %>
       <% end %>
     </div>
   <% else %>

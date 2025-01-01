@@ -8,4 +8,10 @@ class HomeController < ApplicationController
     @post = Post.approved.find_by(slug: params[:slug]) if params[:slug].present?
     @waiting = Post.not_yet_approved.size if admin?
   end
+
+  def gen
+    service = UrlsTitleAndDescriptionService.new(params[:url])
+    title, description = service.generate_title_and_description
+    render json: { title: title, description: description }
+  end
 end

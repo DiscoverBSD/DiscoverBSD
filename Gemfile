@@ -91,3 +91,6 @@ gem 'net-pop'  # for rspec
 
 # Try removing later, not sure if needed, some warning
 gem 'mutex_m'
+
+# Mistral AI for description and title generation
+gem 'omniai-mistral'

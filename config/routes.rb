@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'home#show'
   get 'home/show'
+  post 'home/gen'
   resources :posts, only: [:new, :create] do
     get :by_day, on: :collection
   end

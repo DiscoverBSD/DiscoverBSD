@@ -5,6 +5,9 @@ export default class extends Controller {
 
   async generate(event) {
     event.preventDefault()
+    this.messageTarget.textContent = ''
+    this.titleTarget.value = ''
+    this.descriptionTarget.value = ''
     this.buttonTarget.classList.add('is-loading')
     // generation form is down on page, as we can't have form in form
     // so we need to copy the url to the suburl
@@ -22,7 +25,7 @@ export default class extends Controller {
       this.titleTarget.value = json.title
       this.descriptionTarget.value = json.description
     } else {
-      this.messageTarget.textContent = 'Something went wrong, please, try again'
+      this.messageTarget.textContent = 'Something went wrong: ' + json.errors
     }
     this.buttonTarget.classList.remove('is-loading')
   }

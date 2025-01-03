@@ -11,7 +11,6 @@ class HomeController < ApplicationController
 
   def gen
     service = UrlsTitleAndDescriptionService.new(params[:url])
-    title, description = service.generate_title_and_description
-    render json: { title: title, description: description }
+    render json: service.generate_title_and_description
   end
 end

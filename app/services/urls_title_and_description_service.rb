@@ -1,10 +1,10 @@
 # This service is used to get the title and description of the url's content.
 # Getthe url content and generate title and description with AI
 class UrlsTitleAndDescriptionService
-  attr_reader :errors 
   def initialize(url)
     @url = url
     @client = OmniAI::Mistral::Client.new
+    @errors = []
   end
 
   def fetch_url_content
@@ -15,7 +15,7 @@ class UrlsTitleAndDescriptionService
       response.body.encode('UTF-8', invalid: :replace, undef: :replace)
     end
   rescue StandardError => e
-    puts e.message
+    @errors << e.message
   end
 
   def generate_title_and_description
@@ -44,6 +44,10 @@ class UrlsTitleAndDescriptionService
         message.text("The HTML content is: #{fetch_url_content}")
       end
     end
-    completion.text.split("|||")
+    title, description = completion.text.split("|||")
+    { title: title, description: description, errors: @errors }
+  rescue OmniAI::HTTPError => e
+    @errors << JSON.parse(e.response.body)["message"]
+    { title: nil, description: nil, errors: @errors }
   end
 end

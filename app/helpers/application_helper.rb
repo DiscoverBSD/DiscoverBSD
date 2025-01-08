@@ -1,11 +1,11 @@
 module ApplicationHelper
-  def motif_image_url(post)
-    url = if post.present?
-            post_url(slug: post.slug)
-          else
-            root_url
-          end
-    "https://motif.imgix.com/i?url=#{u url}&image_url=#{u image_url('/img/nik-shuliahin-rkFIIE9PxH0-unsplash.jpg') }&color=88898b&logo_url=#{u image_url('/img/discoverbsd.png') }&logo_alignment=top%2Ccenter&text_alignment=bottom%2Ccenter&logo_padding=70&font_family=Avenir%20Next%20Demi%2CBold&text_color=1d1d1d"
+  def og_image_url(title)
+    "https://og.tailgraph.com/og?fontFamily=Roboto&title=#{u title} \
+    &titleTailwind=text-gray-800%20font-bold%20text-6xl \
+    &bgUrl=https%3A%2F%2Fdiscoverbsd.com%2Fimg%2Fnik-shuliahin-rkFIIE9PxH0-unsplash.jpg \
+    &bgTailwind=bg-white \
+    &overlay=1 \
+    &overlayTailwind=bg-yellow-200%20opacity-30"
   end
 
   def discoverbsd_utm_source_url url

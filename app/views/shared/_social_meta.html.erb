@@ -3,22 +3,22 @@
   <title><%= post.title %></title>
   <!-- Search Engine -->
   <meta name="description" content="<%= post.description[0..200] %>...">
-  <meta name="image" content="<%= og_image_url('DiscoverBSD - ' + post.title) %>">
+  <meta name="image" content="<%= image_url('/img/og-background.png') %>">
   <!-- Schema.org for Google -->
   <meta itemprop="name" content="<%= post.title %>">
   <meta itemprop="description" content="<%= post.description[0..200] %>...">
-  <meta itemprop="image" content="<%= og_image_url('DiscoverBSD - ' + post.title) %>">
+  <meta itemprop="image" content="<%= image_url('/img/og-background.png') %>">
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="<%= post.title %>">
   <meta name="twitter:description" content="<%= post.description[0..200] %>...">
   <meta name="twitter:site" content="https://discoverbsd.com">
-  <meta name="twitter:image" content="<%= og_image_url('DiscoverBSD - ' + post.title) %>">
+  <meta name="twitter:image" content="<%= image_url('/img/og-background.png') %>">
   <!-- Twitter - Article -->
   <!-- Open Graph general (Facebook, Pinterest & Google+) -->
   <meta property="og:title" content="<%= post.title %>">
   <meta property="og:description" content="<%= post.description[0..200] %>...">
-  <meta property="og:image" content="<%= og_image_url('DiscoverBSD - ' + post.title) %>">
+  <meta property="og:image" content="<%= image_url('/img/og-background.png') %>">
   <meta property="og:type" content="article">
   <meta property="og:url" content="<%= post_url(slug: post.slug) %>">
   <!-- Open Graph - Article -->
@@ -29,22 +29,22 @@
   <title>DiscoverBSD - The BSD community linklog</title>
   <!-- Search Engine -->
   <meta name="description" content="Made a script? Written a blog post? Found a useful tutorial? Share it with the BSD community here or just enjoy what everyone else has found!">
-  <meta name="image" content="<%= og_image_url('DiscoverBSD - The BSD community linklog') %>">
+  <meta name="image" content="<%= image_url('/img/og-background.png') %>">
   <!-- Schema.org for Google -->
   <meta itemprop="name" content="DiscoverBSD - The BSD community linklog">
   <meta itemprop="description" content="Made a script? Written a blog post? Found a useful tutorial? Share it with the BSD community here or just enjoy what everyone else has found!">
-  <meta itemprop="image" content="<%= og_image_url('DiscoverBSD - The BSD community linklog') %>">
+  <meta itemprop="image" content="<%= image_url('/img/og-background.png') %>">
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="DiscoverBSD - The BSD community linklog">
   <meta name="twitter:description" content="Made a script? Written a blog post? Found a useful tutorial? Share it with the BSD community here or just enjoy what everyone else has found!">
   <meta name="twitter:site" content="https://discoverbsd.com">
-  <meta name="twitter:image" content="<%= og_image_url('DiscoverBSD - The BSD community linklog') %>">
+  <meta name="twitter:image" content="<%= image_url('/img/og-background.png') %>">
   <!-- Twitter - Article -->
   <!-- Open Graph general (Facebook, Pinterest & Google+) -->
   <meta property="og:title" content="DiscoverBSD - The BSD community linklog">
   <meta property="og:description" content="Made a script? Written a blog post? Found a useful tutorial? Share it with the BSD community here or just enjoy what everyone else has found!">
-  <meta property="og:image" content="<%= og_image_url('DiscoverBSD - The BSD community linklog') %>">
+  <meta property="og:image" content="<%= image_url('/img/og-background.png') %>">
   <meta property="og:type" content="article">
   <meta property="og:url" content="<%= root_url %>">
 <% end %>

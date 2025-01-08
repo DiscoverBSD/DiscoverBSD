@@ -9,7 +9,8 @@ module Admin
       posts_service = PostsByDayService.new(result)
       @newest = result.order(:created_at).first.created_at
       @oldest = result.order(:created_at).last.created_at
-      @posts = result.group_by { |post| post.newsletter_part }
+      posts = result.group_by { |post| post.newsletter_part }
+      @code = NewsletterMarkdownService.new(posts).newsletter_markdown
     end
   end
 end

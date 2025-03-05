@@ -23,13 +23,12 @@ class UrlsTitleAndDescriptionService
       prompt.system <<~SYSTEM
         Task:  
 
-        1. Analyze HTML content.
+        1. Analyze HTML content. When no HTML is provided, return an error message "Please, provide an URL with HTML content.
         2. Generate Title:  
             - Title should be informative and relevant to the content.
             - Target length: under 80 characters.
         3. Generate Summary:  
             - Summarize the key points of the content in 3-5 concise sentences.
-            - Highlight what the article or resource is about and why someone interested in BSD might find it valuable.
         4. Output Format: Title|||Summary
 
         Additional Considerations:  
@@ -37,8 +36,8 @@ class UrlsTitleAndDescriptionService
         - Use keywords naturally throughout the title and summary. 
         - Consider the target audience might be beginners but mostly experienced users when crafting the summary. 
 
-        Return only plain text, no HTML or other formatting that could be used to hijack the website.
-        When no HTML is provided, return an error message "Please, provide an URL with HTML content."
+        Return only plain text, no HTML, Markdown or other formatting that could be used to hijack the website.
+        "
         SYSTEM
       prompt.user do |message|
         message.text("The HTML content is: #{fetch_url_content}")

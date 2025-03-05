@@ -19,8 +19,11 @@ include ApplicationHelper
       #{content}
       ### Did we miss anything?
       This newsletter is made from your content on [DiscoverBSD](https://discoverbsd.com) and [BSDSec](https://bsdsec.net). Submit the stuff we missed so it can appear next time.
+      
       Do you have an OSS BSD-related project that you would like to showcase in BSD Weekly? Reply to sender and we can showcase you as a sponsor of an issue (for free).
+      
       **Do you know anyone who would like this newsletter? Consider forwarding and tell them to subscribe.**
+      
       Thanks for reading and see you next week! Stay safe!
     MARKDOWN
 
@@ -46,9 +49,9 @@ include ApplicationHelper
         MARKDOWN
       end
     else 
-      markdown += "No releases."
+      markdown += "\r\nNo releases."
     end
-    markdown += "\r\n## BSDSec\r\n"
+    markdown += "## BSDSec\r\n"
     if @posts['bsdsec'].present?
       @posts['bsdsec'].each do |post|
         markdown += <<~MARKDOWN
@@ -56,9 +59,9 @@ include ApplicationHelper
         MARKDOWN
       end
     else 
-      markdown += "No security announcements."
+      markdown += "\r\nNo security announcements.\r\n"
     end
-    markdown += "\r\nAs always, it's worth following [BSDSec](https://bsdsec.net). [RSS feed](https://bsdsec.net/articles.atom) and [Twitter account](https://twitter.com/bsdsec) available."
+    markdown += "As always, it's worth following [BSDSec](https://bsdsec.net). [RSS feed](https://bsdsec.net/articles.atom) available."
     markdown += "\r\n## News\r\n"
     if @posts['news'].present?
       @posts['news'].each do |post|
@@ -93,18 +96,18 @@ include ApplicationHelper
     completion = @client.chat do |prompt|
       prompt.system <<~SYSTEM
         Task:  
+        Task:  
 
-        1. Analyze privided content.
+        1. Analyze provided content.
         2. Generate Summary:  
             - Summarize the key points of the content in maximum 150 characters.
             - Example: DiscoverBSD updates, NetBSD satelites, BSD 2024 highlights and more.
             - pick maximum of 3 posts altogether
             - always use "and more" at the end of the summary
             - Do not specifically mention if no releases or security announcements are present.
-        3. Output Format: Summary
+        3. Output Format: Text of the summary
 
         Return only plain text, no HTML or other formatting that could be used to hijack the website.
-        When no HTML is provided, return an error message "Please, provide content to analyze."
         SYSTEM
       prompt.user do |message|
         message.text("The content is: #{content}")

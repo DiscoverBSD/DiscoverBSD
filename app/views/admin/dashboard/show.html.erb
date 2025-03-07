@@ -51,13 +51,13 @@
             <% end %>
           </div>
           <div class="column">
-            <%= form_for post, url: approve_and_tweet_admin_post_path(post), method: :post, data: {controller: "approve-post"} do |f| %>
+            <%= form_for post, url: approve_and_toot_admin_post_path(post), method: :post, data: {controller: "approve-post"} do |f| %>
               <%= f.hidden_field :approved_at, value: Time.zone.now %>
               <%= f.hidden_field :approved_by_id, value: current_user.id %>
               <%= f.hidden_field :approved, value: true %>
               <div class="field is-grouped is-grouped-centered">
                 <div class="control">
-                  <%= f.submit "Approve and tweet/toot", class:"button is-success is-big", data: {action: "click->approve-post#submit"} %>
+                  <%= f.submit "Approve and toot", class:"button is-success is-big", data: {action: "click->approve-post#submit"} %>
                 </div>
               </div>
               <div>

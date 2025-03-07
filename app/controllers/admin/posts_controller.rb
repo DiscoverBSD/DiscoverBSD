@@ -14,11 +14,10 @@ module Admin
       end
     end
 
-    def approve_and_tweet
+    def approve_and_toot
       post = Post.find(params[:id])
       post.update(post_params)
       if post.valid?
-        TweetPostJob.perform_later(post)
         TootPostJob.perform_later(post)
         render json: {}, status: 200
       else

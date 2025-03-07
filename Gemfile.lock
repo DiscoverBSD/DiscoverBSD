@@ -172,12 +172,6 @@ GEM
     nio4r (2.7.4)
     nokogiri (1.18.1-x86_64-linux-gnu)
       racc (~> 1.4)
-    oauth (1.1.0)
-      oauth-tty (~> 1.0, >= 1.0.1)
-      snaky_hash (~> 2.0)
-      version_gem (~> 1.1)
-    oauth-tty (1.0.5)
-      version_gem (~> 1.1, >= 1.1.1)
     oauth2 (2.0.9)
       faraday (>= 0.17.3, < 3.0)
       jwt (>= 1.0, < 3.0)
@@ -202,16 +196,9 @@ GEM
     omniauth-github (1.4.0)
       omniauth (~> 1.5)
       omniauth-oauth2 (>= 1.4.0, < 2.0)
-    omniauth-oauth (1.2.1)
-      oauth
-      omniauth (>= 1.0, < 3)
-      rack (>= 1.6.2, < 4)
     omniauth-oauth2 (1.7.3)
       oauth2 (>= 1.4, < 3)
       omniauth (>= 1.9, < 3)
-    omniauth-twitter (1.4.0)
-      omniauth-oauth (~> 1.1)
-      rack
     ostruct (0.6.1)
     pg (1.5.9)
     public_suffix (6.0.1)
@@ -324,7 +311,6 @@ GEM
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    x (0.14.1)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.7.1)
@@ -349,7 +335,6 @@ DEPENDENCIES
   omniai-mistral
   omniauth (~> 1.9, >= 1.9.1)
   omniauth-github
-  omniauth-twitter
   pg (>= 0.18, < 2.0)
   puma (~> 6.5)
   rails (~> 6.0)
@@ -365,7 +350,6 @@ DEPENDENCIES
   web-console (~> 4.0, >= 4.0.1)
   webdrivers
   webpacker
-  x (~> 0.14.1)
 
 RUBY VERSION
    ruby 3.3.5p100

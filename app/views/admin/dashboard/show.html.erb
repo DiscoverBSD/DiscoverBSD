@@ -2,11 +2,6 @@
   <div class="container">
     <div class="message">
       <div class="message-body">
-      <% if ENV['TWEET_POSTS'].present? %>
-        Tweeting <i class="fab fa-twitter"></i>
-      <% else %>
-        Not Tweeting <i class="fab fa-twitter"></i>
-      <% end %>
       <% if ENV['TOOT_POSTS'].present? %>
         Tooting <i class="fab fa-mastodon"></i>
       <% else %>

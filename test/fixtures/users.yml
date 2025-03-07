@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  provider: twitter
+  provider: github
   uid: 1234567
   auth_token: asdfgh
 
 two:
-  provider: twitter
+  provider: github
   uid: 7654321
   auth_token: ghadfdsf

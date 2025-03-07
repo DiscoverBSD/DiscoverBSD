@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:destroy]
   namespace :admin do
     resources :posts, only: [:update] do
-      post :approve_and_tweet, on: :member
+      post :approve_and_toot, on: :member
     end
     get 'dashboard/show'
     get 'newsletter/show'

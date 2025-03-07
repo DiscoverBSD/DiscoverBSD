@@ -61,16 +61,13 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-# Auth via twitter
-gem 'omniauth-twitter'
+# Auth via GH
 gem 'omniauth-github'
 gem 'omniauth', '~> 1.9', '>= 1.9.1'
 
 # Markdown for posts
 gem 'redcarpet', '~> 3.5'
 
-# Sending tweets to Twitter
-gem 'x', '~> 0.14.1'
 # Sending to Mastodon
 gem 'mastodon-api', git: 'https://github.com/tootsuite/mastodon-api.git', require: 'mastodon'
 

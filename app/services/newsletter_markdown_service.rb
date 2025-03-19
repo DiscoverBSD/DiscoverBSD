@@ -41,7 +41,7 @@ include ApplicationHelper
       end
     end
 
-    markdown += "## Releases\r\n"
+    markdown += "\r\n## Releases\r\n"
     if @posts['releases'].present?
       @posts['releases'].each do |post|
         markdown += <<~MARKDOWN
@@ -49,9 +49,9 @@ include ApplicationHelper
         MARKDOWN
       end
     else 
-      markdown += "\r\nNo releases."
+      markdown += "\r\nNo releases.\r\n"
     end
-    markdown += "## BSDSec\r\n"
+    markdown += "\r\n## BSDSec\r\n"
     if @posts['bsdsec'].present?
       @posts['bsdsec'].each do |post|
         markdown += <<~MARKDOWN
@@ -61,7 +61,7 @@ include ApplicationHelper
     else 
       markdown += "\r\nNo security announcements.\r\n"
     end
-    markdown += "As always, it's worth following [BSDSec](https://bsdsec.net). [RSS feed](https://bsdsec.net/articles.atom) available."
+    markdown += "As always, it's worth following [BSDSec](https://bsdsec.net). [RSS feed](https://bsdsec.net/articles.atom) available.\r\n"
     markdown += "\r\n## News\r\n"
     if @posts['news'].present?
       @posts['news'].each do |post|
@@ -96,11 +96,10 @@ include ApplicationHelper
     completion = @client.chat do |prompt|
       prompt.system <<~SYSTEM
         Task:  
-        Task:  
 
         1. Analyze provided content.
         2. Generate Summary:  
-            - Summarize the key points of the content in maximum 150 characters.
+            - Summarize the key points of the content in one sentence of maximum 150 characters.
             - Example: DiscoverBSD updates, NetBSD satelites, BSD 2024 highlights and more.
             - pick maximum of 3 posts altogether
             - always use "and more" at the end of the summary

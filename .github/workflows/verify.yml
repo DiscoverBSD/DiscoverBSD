@@ -56,12 +56,8 @@ jobs:
         env:
           RAILS_ENV: test
       - name: Test & publish code coverage
-        uses: paambaati/codeclimate-action@v9
         env:
           RAILS_ENV: test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
-        with:
-          coverageCommand: rails test
-          debug: true      
+        run: rails test

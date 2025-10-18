@@ -39,6 +39,8 @@ group :development, :test do
   gem 'dotenv-rails'
   # Code coverage
   gem 'simplecov', require: false
+  # Ruby 3.4 no longer ships drb by default; Rails parallel tests still need it
+  gem 'drb'
 end
 
 group :development do

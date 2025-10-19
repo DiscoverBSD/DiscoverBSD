@@ -1,9 +1,130 @@
-@import '~bulma';
 $fa-font-path: '~@fortawesome/fontawesome-free/webfonts/';
+
+@use "bulma/sass";
+
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/brands';
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/solid';
+
+:root {
+  --ds-light-text: #eae6f4;
+  --ds-base-background: #f6f6f9;
+  --ds-surface: #fdfdff;
+  --ds-surface-strong: #ffffff;
+  --ds-divider: #dcdde5;
+  --ds-divider-strong: #c3c4ce;
+  --ds-shadow-soft: rgba(16, 24, 40, 0.06);
+
+  --ds-primary: #222428;
+  --ds-primary-h: 220deg;
+  --ds-primary-s: 8%;
+  --ds-primary-l: 15%;
+
+  --ds-accent: #eae6f4;
+  --ds-accent-h: 255deg;
+  --ds-accent-s: 32%;
+  --ds-accent-l: 88%;
+
+  --bulma-scheme-h: 220deg;
+  --bulma-scheme-s: 4%;
+  --bulma-scheme-main: var(--ds-surface-strong);
+  --bulma-scheme-main-l: 90%;
+  --bulma-scheme-main-bis: var(--ds-surface);
+  --bulma-scheme-main-bis-l: 98%;
+  --bulma-scheme-main-ter: var(--ds-base-background);
+  --bulma-scheme-main-ter-l: 96%;
+  --bulma-white-l: 96%;
+
+  --bulma-body-background-color: var(--ds-base-background);
+  --bulma-background: var(--ds-surface);
+  --bulma-background-l: 99%;
+
+  --bulma-border: #d0d1da;
+  --bulma-border-l: 80%;
+  --bulma-border-weak: #e7e8ef;
+  --bulma-border-weak-l: 94%;
+
+  --bulma-body-color: #1f1f1f;
+  --bulma-text: #16171c;
+  --bulma-text-l: 18%;
+  --bulma-text-strong: var(--ds-primary);
+  --bulma-text-strong-l: 14%;
+  --bulma-text-title-l: 12%;
+  --bulma-subtitle-color: #1c1e24;
+  --bulma-title-weight: 700;
+
+  --bulma-primary: var(--ds-primary);
+  --bulma-primary-h: var(--ds-primary-h);
+  --bulma-primary-s: var(--ds-primary-s);
+  --bulma-primary-l: var(--ds-primary-l);
+  --bulma-primary-invert: var(--ds-accent);
+
+  --bulma-dark: var(--ds-primary);
+  --bulma-dark-h: var(--ds-primary-h);
+  --bulma-dark-s: var(--ds-primary-s);
+  --bulma-dark-l: var(--ds-primary-l);
+  --bulma-dark-invert-l: 92%;
+  --bulma-dark-dark-invert-l: 98%;
+  --bulma-dark-on-scheme-l: 20%;
+
+  --bulma-light: var(--ds-accent);
+  --bulma-light-h: var(--ds-accent-h);
+  --bulma-light-s: var(--ds-accent-s);
+  --bulma-light-l: var(--ds-accent-l);
+  --bulma-light-invert-l: 20%;
+
+  --bulma-link: #335c97;
+  --bulma-link-h: 218deg;
+  --bulma-link-s: 37%;
+  --bulma-link-l: 38%;
+  --bulma-link-hover: #264a78;
+  --bulma-link-visited: #274b7a;
+
+  --bulma-navbar-background-color: var(--ds-primary);
+  --bulma-navbar-item-color: var(--ds-light-text);
+  --bulma-navbar-item-hover-color: #ffffff;
+  --bulma-navbar-item-hover-background-color: #1b1e22;
+  --bulma-navbar-divider-background-color: #383a3f;
+  --bulma-navbar-dropdown-background-color: #25282c;
+  --bulma-navbar-dropdown-item-hover-color: #ffffff;
+  --bulma-navbar-dropdown-item-hover-background-color: #32353a;
+  --bulma-navbar-burger-color: var(--ds-accent);
+  --bulma-navbar-box-shadow-size: 0 10px 24px;
+  --bulma-navbar-box-shadow-color: rgba(12, 13, 15, 0.35);
+
+  --bulma-button-border-color: #5f636d;
+  --bulma-button-border-width: 1px;
+  --bulma-button-background-color: var(--ds-surface-strong);
+  --bulma-button-color: var(--ds-primary);
+  --bulma-button-hover-background-color: #e9e5f5;
+  --bulma-button-hover-border-color: #3a3d44;
+  --bulma-button-h: var(--ds-primary-h);
+  --bulma-button-s: var(--ds-primary-s);
+  --bulma-button-l: 26%;
+  --bulma-button-border-l: 48%;
+  --bulma-button-hover-color: var(--ds-primary);
+  --bulma-button-active-background-color: #e3d7d3;
+  --bulma-button-active-border-color: #aa9b96;
+
+  --bulma-message-h: var(--ds-primary-h);
+  --bulma-message-s: 6%;
+  --bulma-message-background-l: 100%;
+  --bulma-message-border-l: 46%;
+  --bulma-message-border-style: solid;
+  --bulma-message-border-width: 0 0 0 4px;
+  --bulma-message-color-l: 14%;
+  --bulma-message-body-radius: 0.6rem;
+
+  --bulma-notification-h: var(--ds-primary-h);
+  --bulma-notification-s: 6%;
+  --bulma-notification-background-l: 99%;
+  --bulma-notification-color-l: 16%;
+  --bulma-notification-radius: 0.75rem;
+
+  --bulma-footer-background-color: var(--bulma-body-background-color);
+  --bulma-section-padding: 3rem 1.5rem;
+}
 
 .has-no-bottom-padding {
   padding-bottom: 0;

@@ -26,10 +26,8 @@
         <div class="container">
           <div class="navbar-brand">
             <a href="<%= root_path %>" class="navbar-item">
-              <span class="icon">
-                <i class="fas fa-hashtag"></i>
-              </span>
-              Discover<span class="has-text-weight-bold">BSD</span>
+              <%= image_tag "hash-d-logo.svg", alt: "DiscoverBSD logo", class: "navbar-logo" %>
+              <span>Discover<span class="has-text-weight-bold">BSD</span></span>
             </a>
             <span class="navbar-burger burger" data-target="navbarMenu"  onclick="document.querySelector('.navbar-menu').classList.toggle('is-active');">
               <span></span>
@@ -103,7 +101,7 @@
         <div class="container">
           <article class="message is-dark is-medium">
             <div class="message-body">
-              <strong>The BSD community linklog</strong><br/>
+              Discover<strong>BSD</strong> - The BSD community linklog<br/>
               Made a script? Written a blog post? Found a useful tutorial?
               Share it with the BSD community here or just enjoy what everyone else has found!
               <p class="has-text-centered">
@@ -129,6 +127,7 @@
         <p>
           Read our <a href="https://github.com/DiscoverBSD/DiscoverBSD/blob/master/TERMS.md" target="_blank">Terms and Conditions</a> and <a href="https://github.com/DiscoverBSD/DiscoverBSD/blob/master/PRIVACY.md" target="_blank">Privacy Policy</a>
         </p>
+        <%= image_tag "hash-d-logo.svg", alt: "DiscoverBSD logo", width: 70 %>
       </div>
     </footer>
   </body>

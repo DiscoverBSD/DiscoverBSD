@@ -21,23 +21,11 @@ class UrlsTitleAndDescriptionService
   def generate_title_and_description
     completion = @client.chat do |prompt|
       prompt.system <<~SYSTEM
-        Task:  
-
-        1. Analyze HTML content. When no HTML is provided, return an error message "Please, provide an URL with HTML content.
-        2. Generate Title:  
-            - Title should be informative and relevant to the content.
-            - Target length: under 80 characters.
-        3. Generate Summary:  
-            - Summarize the key points of the content in 3-5 concise sentences.
-        4. Output Format: Title|||Summary
-
-        Additional Considerations:  
-        - Identify and avoid clickbait-style titles. 
-        - Use keywords naturally throughout the title and summary. 
-        - Consider the target audience might be beginners but mostly experienced users when crafting the summary. 
-
-        Return only plain text, no HTML, Markdown or other formatting that could be used to hijack the website.
-        "
+        Hard Constraints (MUST follow every time):
+        Output EXACTLY one line containing: <Title>|||<Summary>
+        Title: <= 80 characters, no trailing period, concise and descriptive.
+        Summary: 3–5 complete sentences, neutral, informative, no marketing fluff, no first-person, no directives to the reader, no repetition of the title verbatim.
+        Formatting: give me plain text only, do not include any markdown.
         SYSTEM
       prompt.user do |message|
         message.text("The HTML content is: #{fetch_url_content}")

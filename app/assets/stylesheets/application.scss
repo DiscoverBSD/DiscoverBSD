@@ -1,11 +1,12 @@
-$fa-font-path: '~@fortawesome/fontawesome-free/webfonts/';
+// FontAwesome 6 - path works with sass --load-path=node_modules
+$fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 
 @use "bulma/sass";
 
-@import '~@fortawesome/fontawesome-free/scss/fontawesome';
-@import '~@fortawesome/fontawesome-free/scss/brands';
-@import '~@fortawesome/fontawesome-free/scss/regular';
-@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '@fortawesome/fontawesome-free/scss/fontawesome';
+@import '@fortawesome/fontawesome-free/scss/brands';
+@import '@fortawesome/fontawesome-free/scss/regular';
+@import '@fortawesome/fontawesome-free/scss/solid';
 
 :root {
   --ds-light-text: #eae6f4;

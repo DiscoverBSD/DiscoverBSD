@@ -2,15 +2,19 @@
   "name": "discoverbsd",
   "private": true,
   "engines": {
-    "node": "16.19.0"
+    "node": "20.x"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.10.2",
-    "@rails/webpacker": "^5.3.0",
-    "bulma": "^1.0.4",
-    "stimulus": "^1.1.1"
+    "@fortawesome/fontawesome-free": "^6.5.1",
+    "@hotwired/stimulus": "^3.2.2",
+    "bulma": "^1.0.4"
   },
   "devDependencies": {
-    "webpack-dev-server": "^3.8.1"
+    "esbuild": "^0.24.0",
+    "sass": "^1.83.0"
+  },
+  "scripts": {
+    "build": "esbuild app/javascript/application.js --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
+    "build:css": "sass ./app/assets/stylesheets/application.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
   }
 }

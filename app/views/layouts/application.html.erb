@@ -9,11 +9,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
-
-    <%= javascript_pack_tag 'application' %>
-    <%= stylesheet_pack_tag 'application' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbo-track': 'reload', defer: true %>
 
     <%= auto_discovery_link_tag(:atom, feeds_posts_default_url, title: 'DiscoverBSD Atom feed') %>
 
@@ -21,7 +18,7 @@
 
   <body>
     <div data-controller="submit-content-loader"
-     data-submit-content-loader-url="<%= new_post_path %>">
+     data-submit-content-loader-url-value="<%= new_post_path %>">
       <nav class="navbar is-black">
         <div class="container">
           <div class="navbar-brand">
@@ -97,7 +94,7 @@
           </div>
         </section>
       <% end %>
-      <section class="section" data-target="submit-content-loader.container">
+      <section class="section" data-submit-content-loader-target="container">
         <div class="container">
           <article class="message is-dark is-medium">
             <div class="message-body">

@@ -1,10 +1,11 @@
-import { Controller } from 'stimulus'
+import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
+  static values = { url: String }
 
   load () {
     this.element.querySelector('.button').className += ' is-loading'
-    fetch(this.data.get('url'), { credentials: 'same-origin' })
+    fetch(this.urlValue, { credentials: 'same-origin' })
       .then(response => response.text())
       .then(html => {
         this.element.style.display = 'none'

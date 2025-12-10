@@ -63,8 +63,9 @@
         </p>
         <div data-controller="terms">
           <div class="buttons is-centered">
-            <form class="has-text-centered">
-              <button formaction="/auth/github" class="button is-dark" data-target="terms.auth">Authenticate with Github</button>
+            <form method="post" action="/auth/github" class="has-text-centered">
+              <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+              <button type="submit" class="button is-dark" data-target="terms.auth">Authenticate with Github</button>
             </form>
           </div>
           <p>

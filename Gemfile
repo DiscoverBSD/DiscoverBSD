@@ -62,7 +62,8 @@ gem 'tzinfo-data', platforms: [:windows, :jruby]
 
 # Auth via GH
 gem 'omniauth-github'
-gem 'omniauth', '~> 1.9', '>= 1.9.1'
+gem 'omniauth', '~> 2.1'
+gem 'omniauth-rails_csrf_protection'
 
 # Markdown for posts
 gem 'redcarpet', '~> 3.5'

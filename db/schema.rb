@@ -10,40 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2021_03_24_143417) do
+ActiveRecord::Schema[8.1].define(version: 2021_03_24_143417) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension "pg_catalog.plpgsql"
 
   create_table "delayed_jobs", force: :cascade do |t|
-    t.integer "priority", default: 0, null: false
     t.integer "attempts", default: 0, null: false
+    t.datetime "created_at", precision: nil
+    t.datetime "failed_at", precision: nil
     t.text "handler", null: false
     t.text "last_error"
-    t.datetime "run_at", precision: nil
     t.datetime "locked_at", precision: nil
-    t.datetime "failed_at", precision: nil
     t.string "locked_by"
+    t.integer "priority", default: 0, null: false
     t.string "queue"
-    t.datetime "created_at", precision: nil
+    t.datetime "run_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
   create_table "posts", force: :cascade do |t|
-    t.bigint "author_id"
-    t.string "title", null: false
-    t.text "description", null: false
-    t.string "url", null: false
     t.boolean "approved", default: false, null: false
-    t.bigint "approved_by_id"
     t.datetime "approved_at", precision: nil
-    t.boolean "declined", default: false, null: false
-    t.bigint "declined_by_id"
-    t.datetime "declined_at", precision: nil
+    t.bigint "approved_by_id"
+    t.bigint "author_id"
     t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.string "slug", null: false
+    t.boolean "declined", default: false, null: false
+    t.datetime "declined_at", precision: nil
+    t.bigint "declined_by_id"
+    t.text "description", null: false
     t.string "newsletter_part", default: "news", null: false
+    t.string "slug", null: false
+    t.string "title", null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.string "url", null: false
     t.index ["approved_by_id"], name: "index_posts_on_approved_by_id"
     t.index ["author_id"], name: "index_posts_on_author_id"
     t.index ["declined_by_id"], name: "index_posts_on_declined_by_id"
@@ -52,12 +52,12 @@ ActiveRecord::Schema[7.2].define(version: 2021_03_24_143417) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "provider", null: false
-    t.string "uid", null: false
+    t.boolean "admin", default: false, null: false
     t.string "auth_token", null: false
     t.datetime "created_at", precision: nil, null: false
+    t.string "provider", null: false
+    t.string "uid", null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.boolean "admin", default: false, null: false
     t.index ["auth_token"], name: "index_users_on_auth_token"
     t.index ["provider"], name: "index_users_on_provider"
     t.index ["uid"], name: "index_users_on_uid"

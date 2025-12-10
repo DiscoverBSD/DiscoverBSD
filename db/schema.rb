@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_24_143417) do
-
+ActiveRecord::Schema[7.2].define(version: 2021_03_24_143417) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,13 +19,13 @@ ActiveRecord::Schema.define(version: 2021_03_24_143417) do
     t.integer "attempts", default: 0, null: false
     t.text "handler", null: false
     t.text "last_error"
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
+    t.datetime "run_at", precision: nil
+    t.datetime "locked_at", precision: nil
+    t.datetime "failed_at", precision: nil
     t.string "locked_by"
     t.string "queue"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
@@ -37,12 +36,12 @@ ActiveRecord::Schema.define(version: 2021_03_24_143417) do
     t.string "url", null: false
     t.boolean "approved", default: false, null: false
     t.bigint "approved_by_id"
-    t.datetime "approved_at"
+    t.datetime "approved_at", precision: nil
     t.boolean "declined", default: false, null: false
     t.bigint "declined_by_id"
-    t.datetime "declined_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "declined_at", precision: nil
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "slug", null: false
     t.string "newsletter_part", default: "news", null: false
     t.index ["approved_by_id"], name: "index_posts_on_approved_by_id"
@@ -56,8 +55,8 @@ ActiveRecord::Schema.define(version: 2021_03_24_143417) do
     t.string "provider", null: false
     t.string "uid", null: false
     t.string "auth_token", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "admin", default: false, null: false
     t.index ["auth_token"], name: "index_users_on_auth_token"
     t.index ["provider"], name: "index_users_on_provider"

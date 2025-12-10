@@ -63,7 +63,9 @@
         </p>
         <div data-controller="terms">
           <div class="buttons is-centered">
-            <%= button_to "Authenticate with Github", "/auth/github", method: :post, class: "button is-dark", data: {target: "terms.auth"} %>
+            <form class="has-text-centered">
+              <button formaction="/auth/github" class="button is-dark" data-target="terms.auth">Authenticate with Github</button>
+            </form>
           </div>
           <p>
             <label class="checkbox is-size-6 has-text-right">

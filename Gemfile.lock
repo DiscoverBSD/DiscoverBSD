@@ -130,8 +130,8 @@ GEM
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
-    faraday-net_http (3.4.1)
-      net-http (>= 0.5.0)
+    faraday-net_http (3.4.2)
+      net-http (~> 0.5)
     ffi (1.17.2-aarch64-linux-gnu)
     ffi (1.17.2-aarch64-linux-musl)
     ffi (1.17.2-arm-linux-gnu)
@@ -166,7 +166,7 @@ GEM
     jbuilder (2.13.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    json (2.15.1)
+    json (2.17.1)
     jwt (3.1.2)
       base64
     listen (3.9.0)
@@ -190,8 +190,8 @@ GEM
     multi_xml (0.7.2)
       bigdecimal (~> 3.1)
     mutex_m (0.3.0)
-    net-http (0.6.0)
-      uri
+    net-http (0.8.0)
+      uri (>= 0.11.1)
     net-imap (0.5.12)
       date
       net-protocol
@@ -218,7 +218,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.18.10-x86_64-linux-musl)
       racc (~> 1.4)
-    oauth2 (2.0.17)
+    oauth2 (2.0.18)
       faraday (>= 0.17.3, < 4.0)
       jwt (>= 1.0, < 4.0)
       logger (~> 1.2)
@@ -239,20 +239,15 @@ GEM
       event_stream_parser
       omniai (~> 2.6)
       zeitwerk
-    omniauth (2.1.4)
+    omniauth (1.9.2)
       hashie (>= 3.4.6)
-      logger
-      rack (>= 2.2.3)
-      rack-protection
-    omniauth-github (2.0.1)
-      omniauth (~> 2.0)
-      omniauth-oauth2 (~> 1.8)
-    omniauth-oauth2 (1.8.0)
+      rack (>= 1.6.2, < 3)
+    omniauth-github (1.4.0)
+      omniauth (~> 1.5)
+      omniauth-oauth2 (>= 1.4.0, < 2.0)
+    omniauth-oauth2 (1.7.3)
       oauth2 (>= 1.4, < 3)
-      omniauth (~> 2.0)
-    omniauth-rails_csrf_protection (2.0.0)
-      actionpack (>= 4.2)
-      omniauth (~> 2.0)
+      omniauth (>= 1.9, < 3)
     ostruct (0.6.3)
     pg (1.6.2)
     pg (1.6.2-aarch64-linux)
@@ -271,20 +266,16 @@ GEM
     puma (6.6.1)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (3.2.4)
-    rack-protection (4.2.1)
-      base64 (>= 0.1.0)
-      logger (>= 1.6.0)
-      rack (>= 3.0.0, < 4)
+    rack (2.2.21)
     rack-proxy (0.7.7)
       rack
-    rack-session (2.1.1)
-      base64 (>= 0.1.0)
-      rack (>= 3.0.0)
+    rack-session (1.0.2)
+      rack (< 3)
     rack-test (2.2.0)
       rack (>= 1.3)
-    rackup (2.3.1)
-      rack (>= 3)
+    rackup (1.0.1)
+      rack (< 3)
+      webrick
     rails (7.2.3)
       actioncable (= 7.2.3)
       actionmailbox (= 7.2.3)
@@ -373,7 +364,7 @@ GEM
       concurrent-ruby (~> 1.0)
     uglifier (4.2.1)
       execjs (>= 0.3.0, < 3)
-    uri (1.0.4)
+    uri (1.1.1)
     useragent (0.16.11)
     version_gem (1.1.9)
     web-console (4.2.1)
@@ -390,6 +381,7 @@ GEM
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
       semantic_range (>= 2.3.0)
+    webrick (1.9.2)
     websocket-driver (0.8.0)
       base64
       websocket-extensions (>= 0.1.0)
@@ -425,9 +417,8 @@ DEPENDENCIES
   net-pop
   net-smtp
   omniai-mistral
-  omniauth (~> 2.0)
+  omniauth (~> 1.9, >= 1.9.1)
   omniauth-github
-  omniauth-rails_csrf_protection
   pg (>= 0.18, < 2.0)
   puma (~> 6.5)
   rails (~> 7.0)

@@ -15,11 +15,9 @@ The application has been successfully upgraded to Rails 7.2.3, the latest stable
 ### 2. Dependency Updates
 
 #### OmniAuth
-- **Before**: OmniAuth 1.9.x
-- **After**: OmniAuth 2.1.4
-- **Breaking Change**: OmniAuth 2.x requires POST requests for authentication instead of GET
-- **Fix Applied**: Updated authentication button in `app/views/posts/new.html.erb` to use `button_to` with `method: :post`
-- **New Dependency**: Added `omniauth-rails_csrf_protection` gem for CSRF protection
+- **Version**: Kept at OmniAuth 1.9.x (compatible with Rails 7.2)
+- **No Breaking Changes**: Authentication continues to use GET method via form submission
+- **Note**: OmniAuth 1.9.x works with Rails 7.2, though OmniAuth 2.x is available with additional CSRF protection
 
 #### Spring Preloader
 - **Removed**: Spring and spring-watcher-listen gems
@@ -30,7 +28,7 @@ The application has been successfully upgraded to Rails 7.2.3, the latest stable
 - Updated jbuilder to ~> 2.11
 - Updated bootsnap constraints
 - Removed concurrent-ruby pin (issue fixed in Rails 7.x)
-- Updated omniauth-github to 2.0.1
+- Kept omniauth-github at 1.4.0
 
 ### 3. Configuration Changes
 
@@ -93,7 +91,6 @@ Before deploying to production, please test:
 
 - [Rails 7.0 Upgrade Guide](https://guides.rubyonrails.org/upgrading_ruby_on_rails.html#upgrading-from-rails-6-1-to-rails-7-0)
 - [Rails 7.2 Release Notes](https://guides.rubyonrails.org/7_2_release_notes.html)
-- [OmniAuth 2.0 Upgrade Guide](https://github.com/omniauth/omniauth/wiki/Upgrading-to-2.0)
 
 ## Next Steps
 

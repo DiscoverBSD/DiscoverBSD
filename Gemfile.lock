@@ -432,7 +432,7 @@ DEPENDENCIES
   webpacker
 
 RUBY VERSION
-  ruby 3.2.3
+  ruby 3.4.7p58
 
 BUNDLED WITH
   4.0.1

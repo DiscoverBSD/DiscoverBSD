@@ -9,14 +9,12 @@ gem 'rails', '~> 8.0'
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 7.1'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 6.0'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '~> 4.1', '>= 4.1.20'
-# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'mini_racer', platforms: :ruby
+# The asset pipeline for Rails
+gem 'sprockets-rails'
+# Bundle and transpile JavaScript with esbuild
+gem 'jsbundling-rails'
+# Bundle and process CSS with Sass
+gem 'cssbundling-rails'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.11'
@@ -47,6 +45,8 @@ group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 4.0'
   gem 'listen', '~> 3.1', '>= 3.1.5'
+  # Process manager for Procfile-based applications
+  gem 'foreman'
 end
 
 group :test do

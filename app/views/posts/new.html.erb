@@ -2,17 +2,17 @@
   <% if logged_in? %>
     <div data-controller="gen">
       <h1 class="title is-4">Submit new post</h1>
-      <%= form_for @post, data: {controller: "submit", target: "submit.form"} do |f| %>
+      <%= form_for @post, data: {controller: "submit", submit_target: "form"} do |f| %>
         <%= f.hidden_field :author_id, value: current_user.id %>
         
         <div class="field is-grouped">
           <label class="label">Url</label>
           <div class="control is-expanded">
             <%= f.text_field :url, class: 'input', placeholder: "ie. https://example.com/make-your-bsd-awesome", 
-            data: { target: "gen.url"} %>
+            data: { gen_target: "url"} %>
           </div>
           <p class="control">
-            <button class="button is-dark"  data-action="click->gen#generate" data-target="gen.button">
+            <button class="button is-dark"  data-action="click->gen#generate" data-gen-target="button">
               <span class="icon">
                 <i class="fas fa-magic"></i>
               </span>
@@ -21,14 +21,14 @@
           </p>
         </div>
         <div>
-          <p class="help is-right" data-target="gen.message"></p>
+          <p class="help is-right" data-gen-target="message"></p>
         </div>
         
         <div class="field">
           <label class="label">Title</label>
           <div class="control">
             <%= f.text_field :title, class: 'input', placeholder: "ie. How to make your BSD awesome", 
-            data: { target: "gen.title"} %>
+            data: { gen_target: "title"} %>
           </div>
         </div>
 
@@ -36,22 +36,22 @@
           <label class="label">Description</label>
           <div class="control">
             <%= f.text_area :description, class: 'textarea', placeholder: "ie. In this article, Mr. Awesome talks about how to make any BSD shine like a sun. Learn the tips to create awesome scripts and securing your **grandma**'s BSD. \r\n\r\nUsage of basic markdown is allowed.", 
-            data: { target: "gen.description"} %>
+            data: { gen_target: "description"} %>
           </div>
         </div>
 
         <div class="field is-grouped is-grouped-right">
           <div class="control">
-            <%= f.submit "Submit", class:"button is-dark", data: {action: "click->submit#submit", target: "submit.button"} %>
+            <%= f.submit "Submit", class:"button is-dark", data: {action: "click->submit#submit", submit_target: "button"} %>
           </div>
         </div>
 
         <div>
-          <p class="help" data-target="submit.error"></p>
+          <p class="help" data-submit-target="error"></p>
         </div>
       <% end %>
-      <%= form_with url: home_gen_path, data: {target: 'gen.form'} do |form| %>
-        <%= form.text_field :url, data: {target: 'gen.suburl'}, class: 'is-invisible' %>
+      <%= form_with url: home_gen_path, data: {gen_target: 'form'} do |form| %>
+        <%= form.text_field :url, data: {gen_target: 'suburl'}, class: 'is-invisible' %>
       <% end %>
     </div>
   <% else %>
@@ -65,12 +65,12 @@
           <div class="buttons is-centered">
             <form method="post" action="/auth/github" class="has-text-centered">
               <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-              <button type="submit" class="button is-dark" data-target="terms.auth">Authenticate with Github</button>
+              <button type="submit" class="button is-dark" data-terms-target="auth">Authenticate with Github</button>
             </form>
           </div>
           <p>
             <label class="checkbox is-size-6 has-text-right">
-              <input type="checkbox" data-target="terms.checkbox" data-action="terms#setDisabled">
+              <input type="checkbox" data-terms-target="checkbox" data-action="terms#setDisabled">
               I agree to the <a href="https://github.com/DiscoverBSD/DiscoverBSD/blob/master/TERMS.md" target="_blank">Terms and Conditions</a> and <a href="https://github.com/DiscoverBSD/DiscoverBSD/blob/master/PRIVACY.md" target="_blank">Privacy Policy</a>.
             </label>
           </p>

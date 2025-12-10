@@ -29,7 +29,7 @@
 <% end %>
 <% if load_posts_from %>
   <div class="has-text-centered" data-controller="more-posts-loader"
-     data-more-posts-loader-url="<%= by_day_posts_path(from: load_posts_from) %>">
+     data-more-posts-loader-url-value="<%= by_day_posts_path(from: load_posts_from) %>">
     <a class="button" data-action="more-posts-loader#load">load more</a>
   </div>
 <% else %>

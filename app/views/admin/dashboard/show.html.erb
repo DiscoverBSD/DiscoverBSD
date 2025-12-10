@@ -46,7 +46,7 @@
                 </div>
               </div>
               <div>
-                <p class="help" data-target="update-post.message"></p>
+                <p class="help" data-update-post-target="message"></p>
               </div>
             <% end %>
           </div>
@@ -61,7 +61,7 @@
                 </div>
               </div>
               <div>
-                <p class="help" data-target="approve-post.message"></p>
+                <p class="help" data-approve-post-target="message"></p>
               </div>
             <% end %>
 
@@ -70,7 +70,7 @@
               <%= f.hidden_field :declined_by_id, value: current_user.id %>
               <%= f.hidden_field :declined, value: true %>
               <div>
-                <p class="help" data-target="decline-post.message"></p>
+                <p class="help" data-decline-post-target="message"></p>
               </div>
               <div class="field is-grouped is-grouped-centered">
                 <div class="control">

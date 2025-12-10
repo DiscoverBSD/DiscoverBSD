@@ -19,7 +19,7 @@ jobs:
         
       - uses: actions/setup-node@v4
         with:
-          node-version: 16.19.0     
+          node-version: 20
 
       - name: Install dependent libraries
         run: sudo apt-get install libpq-dev
@@ -39,22 +39,16 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
 
-      - name: Install yarn
+      - name: Install yarn dependencies
+        run: yarn install
+
+      - name: Build assets
         run: |
-          npm install --global yarn
-      
-      - name: Add webpacker before yarn install # solves node-sass error
-        run: |
-          yarn add @rails/webpacker
-      
-      # - name: yarn install --check-files # --check-files ensures @rails/webpacker dependencies aren't overwritten
-      #   run: |
-      #     sudo yarn install --check-files
-      
-      - name: Compile Webpacker
-        run: bundle exec rails webpacker:compile
+          yarn build
+          yarn build:css
         env:
           RAILS_ENV: test
+
       - name: Test & publish code coverage
         env:
           RAILS_ENV: test

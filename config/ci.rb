@@ -3,7 +3,9 @@
 CI.run do
   step "Setup", "bin/setup --skip-server"
 
-  step "Security: Importmap vulnerability audit", "bin/importmap audit"
+  # This app uses Webpacker, not Importmap
+  # step "Security: Importmap vulnerability audit", "bin/importmap audit"
+  step "Security: Bundler vulnerability audit", "bundle audit check --update"
 
   step "Tests: Rails", "bin/rails test"
   step "Tests: System", "bin/rails test:system"

@@ -4,7 +4,7 @@ git_source(:github) { |repo| 'https://github.com/#{repo}.git' }
 ruby '3.4.7'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 7.0'
+gem 'rails', '~> 8.0'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
@@ -62,7 +62,8 @@ gem 'tzinfo-data', platforms: [:windows, :jruby]
 
 # Auth via GH
 gem 'omniauth-github'
-gem 'omniauth', '~> 1.9', '>= 1.9.1'
+gem 'omniauth', '~> 2.1'
+gem 'omniauth-rails_csrf_protection'
 
 # Markdown for posts
 gem 'redcarpet', '~> 3.5'

@@ -5,13 +5,13 @@
     "node": "20.x"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^6.5.1",
+    "@fortawesome/fontawesome-free": "^7.1.0",
     "@hotwired/stimulus": "^3.2.2",
     "bulma": "^1.0.4"
   },
   "devDependencies": {
-    "esbuild": "^0.24.0",
-    "sass": "^1.83.0"
+    "esbuild": "^0.27.1",
+    "sass": "^1.95.1"
   },
   "scripts": {
     "build": "esbuild app/javascript/application.js --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",

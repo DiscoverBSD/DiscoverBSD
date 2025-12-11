@@ -1,9 +1,12 @@
-// FontAwesome 7 - font path is relative to webfonts in CSS
+// FontAwesome 7 - serve fonts via Sprockets pipeline under /assets
+@use '@fortawesome/fontawesome-free/scss/variables' with ($font-path: '/assets'
+);
 @use '@fortawesome/fontawesome-free/scss/fontawesome';
 @use '@fortawesome/fontawesome-free/scss/brands';
 @use '@fortawesome/fontawesome-free/scss/regular';
 @use '@fortawesome/fontawesome-free/scss/solid';
 
+// Bulma
 @use "bulma/sass";
 
 :root {

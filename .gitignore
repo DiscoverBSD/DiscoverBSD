@@ -44,3 +44,7 @@ coverage
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+# Ignore compiled asset builds; keep placeholder to ensure dir exists
+/app/assets/builds/*
+!/app/assets/builds/.keep

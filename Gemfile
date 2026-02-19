@@ -66,9 +66,6 @@ gem 'omniauth-rails_csrf_protection'
 # Markdown for posts
 gem 'redcarpet', '~> 3.5'
 
-# Sending to Mastodon
-gem 'mastodon-api', git: 'https://github.com/tootsuite/mastodon-api.git', require: 'mastodon'
-
 # Background jobs
 gem 'delayed_job', '~> 4.1', '>= 4.1.8'
 gem 'delayed_job_active_record'

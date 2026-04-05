@@ -2,7 +2,7 @@
   "name": "discoverbsd",
   "private": true,
   "engines": {
-    "node": "20.x"
+    "node": "22.22.2"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.1.0",

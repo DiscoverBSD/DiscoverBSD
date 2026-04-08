@@ -82,14 +82,16 @@ Thanks for reading and see you next week! Stay safe!
   end
 
   def fetch_new_newsletter_number
-    uri = URI.parse('https://bsdweekly.com/issues.json')
-    response = Net::HTTP.get_response(uri)
-  
-    if response.is_a?(Net::HTTPSuccess)
-      JSON.parse(response.body.encode('UTF-8', invalid: :replace, undef: :replace))['posts'][0]['slug'].to_i + 1
+    @issue_number ||= begin
+      uri = URI.parse('https://bsdweekly.com/issues.json')
+      response = Net::HTTP.get_response(uri)
+
+      if response.is_a?(Net::HTTPSuccess)
+        JSON.parse(response.body.encode('UTF-8', invalid: :replace, undef: :replace))['posts'][0]['slug'].to_i + 1
+      end
+    rescue StandardError => e
+      nil
     end
-  rescue StandardError => e
-    'Error'
   end
 
   def newsletter_summary(content)

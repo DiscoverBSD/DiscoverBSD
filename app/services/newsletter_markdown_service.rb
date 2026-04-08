@@ -10,21 +10,21 @@ include ApplicationHelper
     content = newsletter_content
     summary = newsletter_summary(content)
     markdown = <<~MARKDOWN
-      ---
-      title: Issue #{fetch_new_newsletter_number}
-      date: #{Time.now.utc.iso8601}
-      ---
-      #{summary}
-      <!-- more -->
-      #{content}
-      ### Did we miss anything?
-      This newsletter is made from your content on [DiscoverBSD](https://discoverbsd.com) and [BSDSec](https://bsdsec.net). Submit the stuff we missed so it can appear next time.
-      
-      Do you have an OSS BSD-related project that you would like to showcase in BSD Weekly? Reply to sender and we can showcase you as a sponsor of an issue (for free).
-      
-      **Do you know anyone who would like this newsletter? Consider forwarding and tell them to subscribe.**
-      
-      Thanks for reading and see you next week! Stay safe!
+---
+title: Issue #{fetch_new_newsletter_number}
+date: #{Time.now.utc.iso8601}
+---
+#{summary}
+<!-- more -->
+#{content}
+### Did we miss anything?
+This newsletter is made from your content on [DiscoverBSD](https://discoverbsd.com) and [BSDSec](https://bsdsec.net). Submit the stuff we missed so it can appear next time.
+
+Do you have an OSS BSD-related project that you would like to showcase in BSD Weekly? Reply to sender and we can showcase you as a sponsor of an issue (for free).
+
+**Do you know anyone who would like this newsletter? Consider forwarding and tell them to subscribe.**
+
+Thanks for reading and see you next week! Stay safe!
     MARKDOWN
 
     markdown

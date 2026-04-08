@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get '/feeds/posts/default', to: 'posts#feed'
   get '/auth/:provider/callback', to: 'sessions#create'
   resources :sessions, only: [:destroy]
+  namespace :api do
+    get 'newsletter', to: 'newsletter#show'
+  end
   namespace :admin do
     resources :posts, only: [:update] do
       post :approve_and_toot, on: :member

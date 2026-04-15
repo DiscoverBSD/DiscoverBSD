@@ -1,9 +1,9 @@
 # Generate markdown for the newsletter
 class NewsletterMarkdownService
 include ApplicationHelper
-  def initialize(posts)
+  def initialize(posts, client: nil)
     @posts = posts
-    @client = OmniAI::Mistral::Client.new
+    @client = client || OmniAI::Mistral::Client.new
   end
 
   def newsletter_markdown

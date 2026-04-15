@@ -31,54 +31,53 @@ Thanks for reading and see you next week! Stay safe!
   end
 
   def newsletter_content
-    markdown = ""
+    sections = []
+
     if @posts['main'].present?
-      @posts['main'].each do |post|
-        markdown += <<~MARKDOWN
-          [#{post.title}](#{bsdweekly_utm_source_url(post.url)})
-          #{post.description} \r\n
-        MARKDOWN
-      end
+      main_text = @posts['main'].map do |post|
+        "[#{post.title}](#{bsdweekly_utm_source_url(post.url)})\n#{post.description}"
+      end.join("\n\n")
+      sections << main_text
     end
 
-    markdown += "\r\n## Releases\r\n"
+    releases = "## Releases\n"
     if @posts['releases'].present?
-      @posts['releases'].each do |post|
-        markdown += <<~MARKDOWN
-          [#{post.title}](#{bsdweekly_utm_source_url(post.url)}): #{post.description} \r\n
-        MARKDOWN
-      end
-    else 
-      markdown += "\r\nNo releases.\r\n"
+      releases += @posts['releases'].map do |post|
+        "[#{post.title}](#{bsdweekly_utm_source_url(post.url)}): #{post.description}"
+      end.join("\n\n")
+    else
+      releases += "No releases."
     end
-    markdown += "\r\n## BSDSec\r\n"
+    sections << releases
+
+    bsdsec = "## BSDSec\n"
     if @posts['bsdsec'].present?
-      @posts['bsdsec'].each do |post|
-        markdown += <<~MARKDOWN
-          [#{post.title}](#{bsdweekly_utm_source_url(post.url)}): #{post.description} \r\n
-        MARKDOWN
-      end
-    else 
-      markdown += "\r\nNo security announcements.\r\n"
+      bsdsec += @posts['bsdsec'].map do |post|
+        "[#{post.title}](#{bsdweekly_utm_source_url(post.url)}): #{post.description}"
+      end.join("\n\n")
+    else
+      bsdsec += "\nNo security announcements."
     end
-    markdown += "As always, it's worth following [BSDSec](https://bsdsec.net). [RSS feed](https://bsdsec.net/articles.atom) available.\r\n"
-    markdown += "\r\n## News\r\n"
+    bsdsec += "\nAs always, it's worth following [BSDSec](https://bsdsec.net). [RSS feed](https://bsdsec.net/articles.atom) available."
+    sections << bsdsec
+
+    news = "## News\n"
     if @posts['news'].present?
-      @posts['news'].each do |post|
-        markdown += <<~MARKDOWN
-          [#{post.title}](#{bsdweekly_utm_source_url(post.url)}): #{post.description} \r\n
-        MARKDOWN
-      end
+      news += @posts['news'].map do |post|
+        "[#{post.title}](#{bsdweekly_utm_source_url(post.url)}): #{post.description}"
+      end.join("\n\n")
     end
-    markdown += "## Tutorials\r\n"
+    sections << news
+
+    tutorials = "## Tutorials\n"
     if @posts['tutorials'].present?
-      @posts['tutorials'].each do |post|
-        markdown += <<~MARKDOWN
-          [#{post.title}](#{bsdweekly_utm_source_url(post.url)}): #{post.description} \r\n
-        MARKDOWN
-      end
+      tutorials += @posts['tutorials'].map do |post|
+        "[#{post.title}](#{bsdweekly_utm_source_url(post.url)}): #{post.description}"
+      end.join("\n\n")
     end
-    markdown
+    sections << tutorials
+
+    "\n" + sections.map(&:rstrip).join("\n\n") + "\n"
   end
 
   def fetch_new_newsletter_number

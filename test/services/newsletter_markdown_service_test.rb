@@ -68,7 +68,7 @@ class NewsletterMarkdownServiceTest < ActiveSupport::TestCase
     assert_no_match(/\r/, markdown, "Markdown should not contain carriage returns")
   end
 
-  test "newsletter_content includes only non-empty section headers when all sections are empty" do
+  test "newsletter_content includes Releases and BSDSec headers when empty and omits empty News and Tutorials headers" do
     posts = {
       'releases' => [],
       'bsdsec' => [],

@@ -60,7 +60,7 @@ Thanks for reading and see you next week! Stay safe!
     else
       bsdsec += "\nNo security announcements."
     end
-    bsdsec += "\nAs always, it's worth following [BSDSec](https://bsdsec.net). [RSS feed](https://bsdsec.net/articles.atom) available."
+    bsdsec += "\n\nAs always, it's worth following [BSDSec](https://bsdsec.net). [RSS feed](https://bsdsec.net/articles.atom) available."
     sections << bsdsec
 
     if @posts['news'].present?

@@ -40,6 +40,8 @@ class NewsletterMarkdownServiceTest < ActiveSupport::TestCase
 
     assert_no_match(/\n{3,}/, content, "Content should not contain consecutive blank lines (3+ newlines in a row)")
     assert_no_match(/\r/, content, "Content should not contain carriage returns")
+    assert_no_match(/\A\n/, content, "Content should not start with a newline")
+    assert_no_match(/\n\z/, content, "Content should not end with a newline")
   end
 
   test "newsletter_markdown does not produce consecutive blank lines in generated sections" do

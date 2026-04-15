@@ -16,7 +16,9 @@ date: #{Time.now.utc.iso8601}
 ---
 #{summary}
 <!-- more -->
+
 #{content}
+
 ### Did we miss anything?
 This newsletter is made from your content on [DiscoverBSD](https://discoverbsd.com) and [BSDSec](https://bsdsec.net). Submit the stuff we missed so it can appear next time.
 
@@ -77,8 +79,7 @@ Thanks for reading and see you next week! Stay safe!
     end
     sections << tutorials
 
-    # Leading \n ensures a blank line between <!-- more --> and the first section header
-    "\n" + sections.map(&:rstrip).join("\n\n") + "\n"
+    sections.map(&:rstrip).join("\n\n")
   end
 
   def fetch_new_newsletter_number

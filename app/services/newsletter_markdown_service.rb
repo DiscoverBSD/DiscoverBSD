@@ -63,21 +63,21 @@ Thanks for reading and see you next week! Stay safe!
     bsdsec += "\nAs always, it's worth following [BSDSec](https://bsdsec.net). [RSS feed](https://bsdsec.net/articles.atom) available."
     sections << bsdsec
 
-    news = "## News\n"
     if @posts['news'].present?
+      news = "## News\n"
       news += @posts['news'].map do |post|
         "[#{post.title}](#{bsdweekly_utm_source_url(post.url)}): #{post.description}"
       end.join("\n\n")
+      sections << news
     end
-    sections << news
 
-    tutorials = "## Tutorials\n"
     if @posts['tutorials'].present?
+      tutorials = "## Tutorials\n"
       tutorials += @posts['tutorials'].map do |post|
         "[#{post.title}](#{bsdweekly_utm_source_url(post.url)}): #{post.description}"
       end.join("\n\n")
+      sections << tutorials
     end
-    sections << tutorials
 
     sections.map(&:rstrip).join("\n\n")
   end

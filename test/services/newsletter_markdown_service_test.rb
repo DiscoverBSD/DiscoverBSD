@@ -67,7 +67,7 @@ class NewsletterMarkdownServiceTest < ActiveSupport::TestCase
     assert_no_match(/\r/, markdown, "Markdown should not contain carriage returns")
   end
 
-  test "newsletter_content includes all section headers" do
+  test "newsletter_content includes only non-empty section headers when all sections are empty" do
     posts = {
       'releases' => [],
       'bsdsec' => [],
@@ -80,6 +80,25 @@ class NewsletterMarkdownServiceTest < ActiveSupport::TestCase
 
     assert_includes content, "## Releases"
     assert_includes content, "## BSDSec"
+    assert_not_includes content, "## News"
+    assert_not_includes content, "## Tutorials"
+  end
+
+  test "newsletter_content includes News and Tutorials headers when they have posts" do
+    posts = {
+      'releases' => [],
+      'bsdsec' => [],
+      'news' => [
+        build_post(title: "News 1", url: "https://example.com/n1", description: "News desc.", newsletter_part: "news")
+      ],
+      'tutorials' => [
+        build_post(title: "Tutorial 1", url: "https://example.com/t1", description: "Tutorial desc.", newsletter_part: "tutorials")
+      ]
+    }
+
+    service = build_service(posts)
+    content = service.newsletter_content
+
     assert_includes content, "## News"
     assert_includes content, "## Tutorials"
   end

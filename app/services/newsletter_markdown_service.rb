@@ -1,9 +1,9 @@
 # Generate markdown for the newsletter
 class NewsletterMarkdownService
 include ApplicationHelper
-  def initialize(posts)
+  def initialize(posts, client: nil)
     @posts = posts
-    @client = OmniAI::Mistral::Client.new
+    @client = client || OmniAI::Mistral::Client.new
   end
 
   def newsletter_markdown
@@ -16,7 +16,9 @@ date: #{Time.now.utc.iso8601}
 ---
 #{summary}
 <!-- more -->
+
 #{content}
+
 ### Did we miss anything?
 This newsletter is made from your content on [DiscoverBSD](https://discoverbsd.com) and [BSDSec](https://bsdsec.net). Submit the stuff we missed so it can appear next time.
 
@@ -31,54 +33,53 @@ Thanks for reading and see you next week! Stay safe!
   end
 
   def newsletter_content
-    markdown = ""
+    sections = []
+
     if @posts['main'].present?
-      @posts['main'].each do |post|
-        markdown += <<~MARKDOWN
-          [#{post.title}](#{bsdweekly_utm_source_url(post.url)})
-          #{post.description} \r\n
-        MARKDOWN
-      end
+      main_text = @posts['main'].map do |post|
+        "[#{post.title}](#{bsdweekly_utm_source_url(post.url)})\n#{post.description}"
+      end.join("\n\n")
+      sections << main_text
     end
 
-    markdown += "\r\n## Releases\r\n"
+    releases = "## Releases\n"
     if @posts['releases'].present?
-      @posts['releases'].each do |post|
-        markdown += <<~MARKDOWN
-          [#{post.title}](#{bsdweekly_utm_source_url(post.url)}): #{post.description} \r\n
-        MARKDOWN
-      end
-    else 
-      markdown += "\r\nNo releases.\r\n"
+      releases += @posts['releases'].map do |post|
+        "[#{post.title}](#{bsdweekly_utm_source_url(post.url)}): #{post.description}"
+      end.join("\n\n")
+    else
+      releases += "\nNo releases."
     end
-    markdown += "\r\n## BSDSec\r\n"
+    sections << releases
+
+    bsdsec = "## BSDSec\n"
     if @posts['bsdsec'].present?
-      @posts['bsdsec'].each do |post|
-        markdown += <<~MARKDOWN
-          [#{post.title}](#{bsdweekly_utm_source_url(post.url)}): #{post.description} \r\n
-        MARKDOWN
-      end
-    else 
-      markdown += "\r\nNo security announcements.\r\n"
+      bsdsec += @posts['bsdsec'].map do |post|
+        "[#{post.title}](#{bsdweekly_utm_source_url(post.url)}): #{post.description}"
+      end.join("\n\n")
+    else
+      bsdsec += "\nNo security announcements."
     end
-    markdown += "As always, it's worth following [BSDSec](https://bsdsec.net). [RSS feed](https://bsdsec.net/articles.atom) available.\r\n"
-    markdown += "\r\n## News\r\n"
+    bsdsec += "\n\nAs always, it's worth following [BSDSec](https://bsdsec.net). [RSS feed](https://bsdsec.net/articles.atom) available."
+    sections << bsdsec
+
     if @posts['news'].present?
-      @posts['news'].each do |post|
-        markdown += <<~MARKDOWN
-          [#{post.title}](#{bsdweekly_utm_source_url(post.url)}): #{post.description} \r\n
-        MARKDOWN
-      end
+      news = "## News\n"
+      news += @posts['news'].map do |post|
+        "[#{post.title}](#{bsdweekly_utm_source_url(post.url)}): #{post.description}"
+      end.join("\n\n")
+      sections << news
     end
-    markdown += "## Tutorials\r\n"
+
     if @posts['tutorials'].present?
-      @posts['tutorials'].each do |post|
-        markdown += <<~MARKDOWN
-          [#{post.title}](#{bsdweekly_utm_source_url(post.url)}): #{post.description} \r\n
-        MARKDOWN
-      end
+      tutorials = "## Tutorials\n"
+      tutorials += @posts['tutorials'].map do |post|
+        "[#{post.title}](#{bsdweekly_utm_source_url(post.url)}): #{post.description}"
+      end.join("\n\n")
+      sections << tutorials
     end
-    markdown
+
+    sections.map(&:rstrip).join("\n\n")
   end
 
   def fetch_new_newsletter_number

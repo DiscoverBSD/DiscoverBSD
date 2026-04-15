@@ -13,8 +13,11 @@ class NewsletterMarkdownServiceTest < ActiveSupport::TestCase
   end
 
   def build_service(posts_hash)
-    # Stub the Mistral client so it doesn't make real API calls
-    service = NewsletterMarkdownService.new(posts_hash)
+    # Stub the Mistral client during initialization so tests don't depend on client setup side effects
+    fake_client = Object.new
+    service = OmniAI::Mistral::Client.stub(:new, fake_client) do
+      NewsletterMarkdownService.new(posts_hash)
+    end
     service.define_singleton_method(:newsletter_summary) { |_content| "Summary text" }
     service.define_singleton_method(:fetch_new_newsletter_number) { 100 }
     service

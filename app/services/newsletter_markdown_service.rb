@@ -46,7 +46,7 @@ Thanks for reading and see you next week! Stay safe!
         "[#{post.title}](#{bsdweekly_utm_source_url(post.url)}): #{post.description}"
       end.join("\n\n")
     else
-      releases += "No releases."
+      releases += "\nNo releases."
     end
     sections << releases
 
@@ -77,6 +77,7 @@ Thanks for reading and see you next week! Stay safe!
     end
     sections << tutorials
 
+    # Leading \n ensures a blank line between <!-- more --> and the first section header
     "\n" + sections.map(&:rstrip).join("\n\n") + "\n"
   end
 

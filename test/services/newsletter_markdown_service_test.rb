@@ -88,6 +88,7 @@ class NewsletterMarkdownServiceTest < ActiveSupport::TestCase
     content = service.newsletter_content
 
     assert_includes content, "No releases."
+    assert_match(/## Releases\n\nNo releases\./, content, "Should have blank line between header and fallback text")
   end
 
   test "newsletter_content shows fallback text when no bsdsec posts" do

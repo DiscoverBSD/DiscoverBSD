@@ -117,7 +117,7 @@ Thanks for reading and see you next week! Stay safe!
     end
     completion.text
   rescue StandardError => e
-    'Error'
+    "Summary generation failed: #{e.message}. Please write the summary manually."
   end
 
 end

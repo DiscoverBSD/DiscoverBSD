@@ -40,6 +40,16 @@ class UrlsTitleAndDescriptionService
         - No marketing fluff, no first-person, no "click here"/"check out"/directives to the reader, no repeating the title verbatim, no filler or off-topic sentences.
         - For a roundup, podcast episode, status report, or link list covering many items: do NOT dump a long comma-separated list of every item. Instead, group the notable highlights by theme into readable sentences. For a small handful of items, one natural sentence ending with "and more" is fine.
 
+        Write like a human, not like an AI. Avoid these AI-writing tells:
+        - No em dashes (—). Use commas, parentheses, or separate sentences. Prefer plain hyphenated lists or "such as".
+        - Use straight quotes (') and ("), never curly quotes ('' "").
+        - Don't inflate significance: avoid "marks a milestone", "underscores", "highlights its importance", "pivotal", "landmark", "key step", "reflects a broader trend", or any "why this matters" editorializing the source didn't state.
+        - Avoid AI-vocabulary words: delve, leverage, robust, seamless, crucial, vital, boasts, showcase, foster, enhance, intricate, tapestry, realm, landscape (figurative), comprehensive, notably, additionally.
+        - Use plain verbs. Prefer "is/are/has/adds" over "serves as", "stands as", "boasts", "features", "represents".
+        - No rule-of-three padding (adjective, adjective, adjective) and no "not just X, but Y" parallelisms.
+        - Don't end sentences with a trailing "-ing" clause that editorializes (e.g. "...releasing new builds, strengthening its security posture"). State the facts plainly.
+        - No vague attributions ("observers note", "experts say") unless the source names them.
+
         Examples of the target style:
         - Why ZFS Is Ideal for Multi-User Media Production|||Klara Systems walks through how ZFS snapshots, datasets, and tunables hold up under the large files and concurrent access of a shared media workflow.
         - BSD Now 666: Everyone Gets an LPE|||This episode covers the fatgid LPE, why ZFS suits media production, a private pkg repo behind mutual TLS, and more.

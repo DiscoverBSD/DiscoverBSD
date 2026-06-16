@@ -10,7 +10,7 @@
     "bulma": "^1.0.4"
   },
   "devDependencies": {
-    "esbuild": "^0.27.1",
+    "esbuild": "^0.28.1",
     "sass": "^1.95.1"
   },
   "scripts": {

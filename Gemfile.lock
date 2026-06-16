@@ -193,7 +193,7 @@ GEM
     mutex_m (0.3.0)
     net-http (0.9.1)
       uri (>= 0.11.1)
-    net-imap (0.6.4)
+    net-imap (0.6.4.1)
       date
       net-protocol
     net-pop (0.1.2)
@@ -266,7 +266,7 @@ GEM
       date
       stringio
     public_suffix (7.0.5)
-    puma (7.2.0)
+    puma (7.2.1)
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (3.2.6)
@@ -274,7 +274,7 @@ GEM
       base64 (>= 0.1.0)
       logger (>= 1.6.0)
       rack (>= 3.0.0, < 4)
-    rack-session (2.1.1)
+    rack-session (2.1.2)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
     rack-test (2.2.0)
@@ -405,7 +405,7 @@ DEPENDENCIES
   omniauth-github
   omniauth-rails_csrf_protection
   pg (>= 0.18, < 2.0)
-  puma (~> 7.1)
+  puma (~> 7.2)
   rails (~> 8.0)
   redcarpet (~> 3.5)
   rollbar

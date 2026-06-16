@@ -1,6 +1,11 @@
 # This service is used to get the title and description of the url's content.
 # Getthe url content and generate title and description with AI
 class UrlsTitleAndDescriptionService
+  # Cap how much page text is sent to the model. Raw HTML for a single page can
+  # be hundreds of KB; trimming to readable text keeps requests well under
+  # Mistral's per-minute token limits.
+  MAX_CONTENT_CHARS = 20_000
+
   def initialize(url)
     @url = url
     @client = OmniAI::Mistral::Client.new
@@ -58,7 +63,7 @@ class UrlsTitleAndDescriptionService
         - Valuable News - 2026/06/08|||This week's roundup covers FreeBSD 15.1-RC3, OpenBSD updating clang/lld to 22.1.6 and adding boot-time relinking for httpd and smtpd, NetBSD's GSoC 2026 contributors, an analysis of a compromised pfSense firewall, and more.
         SYSTEM
       prompt.user do |message|
-        message.text("The HTML content is: #{fetch_url_content}")
+        message.text("The page content is: #{page_text}")
       end
     end
     title, description = completion.text.split("|||")
@@ -69,6 +74,22 @@ class UrlsTitleAndDescriptionService
   end
 
   private
+
+  # Fetch the page and reduce it to readable text: drop scripts, styles, and
+  # other non-content nodes, collapse whitespace, and cap the length so a large
+  # page does not blow past the model's token limits.
+  def page_text
+    html = fetch_url_content
+    return if html.nil?
+
+    doc = Nokogiri::HTML(html)
+    title = doc.at('title')&.text.to_s.strip
+    doc.search('script, style, noscript, svg, iframe, template, link, meta').remove
+    body = doc.at('body') || doc
+    text = body.text.gsub(/\s+/, ' ').strip
+    text = "Title: #{title}\n\n#{text}" unless title.empty?
+    text[0, MAX_CONTENT_CHARS]
+  end
 
   def title_rule
     if bsdsec_source?

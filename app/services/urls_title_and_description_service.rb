@@ -1,5 +1,5 @@
 # This service is used to get the title and description of the url's content.
-# Getthe url content and generate title and description with AI
+# Get the url content and generate title and description with AI
 class UrlsTitleAndDescriptionService
   # Cap how much page text is sent to the model. Raw HTML for a single page can
   # be hundreds of KB; trimming to readable text keeps requests well under
@@ -13,14 +13,17 @@ class UrlsTitleAndDescriptionService
   end
 
   def fetch_url_content
-    uri = URI.parse(@url)
-    response = Net::HTTP.get_response(uri)
-  
-    if response.is_a?(Net::HTTPSuccess)
-      response.body.encode('UTF-8', invalid: :replace, undef: :replace)
+    uri = SafeUrl.new(@url).uri
+    unless uri
+      @errors << 'This URL cannot be fetched.'
+      return
     end
+
+    response = Net::HTTP.get_response(uri)
+    response.body.encode('UTF-8', invalid: :replace, undef: :replace) if response.is_a?(Net::HTTPSuccess)
   rescue StandardError => e
     @errors << e.message
+    nil
   end
 
   def generate_title_and_description

@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  before_action :require_login, only: :gen
+
   def show
     service = NextPostsService.new(minimum_of_posts: 10, end_date: Time.zone.now, number_of_days: 5)
     result = service.perform
@@ -12,5 +14,11 @@ class HomeController < ApplicationController
   def gen
     service = UrlsTitleAndDescriptionService.new(params[:url])
     render json: service.generate_title_and_description
+  end
+
+  private
+
+  def require_login
+    head :unauthorized unless logged_in?
   end
 end

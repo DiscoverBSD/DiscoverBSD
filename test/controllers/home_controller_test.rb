@@ -6,4 +6,9 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "gen requires login" do
+    post home_gen_url, params: { url: 'https://example.com' }
+
+    assert_response :unauthorized
+  end
 end

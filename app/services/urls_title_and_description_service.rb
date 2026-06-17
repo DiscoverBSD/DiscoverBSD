@@ -6,9 +6,17 @@ class UrlsTitleAndDescriptionService
   # Mistral's per-minute token limits.
   MAX_CONTENT_CHARS = 20_000
 
-  def initialize(url)
+  # Server-rendered metadata that carries the real title/summary on JS-heavy
+  # pages (YouTube, social links, SPAs) where the <body> text is near empty.
+  META_SELECTORS = {
+    'og:title' => "meta[property='og:title']",
+    'og:description' => "meta[property='og:description']",
+    'description' => "meta[name='description']"
+  }.freeze
+
+  def initialize(url, client: nil)
     @url = url
-    @client = OmniAI::Mistral::Client.new
+    @client = client || OmniAI::Mistral::Client.new
     @errors = []
   end
 
@@ -67,6 +75,11 @@ class UrlsTitleAndDescriptionService
       end
     end
     title, description = completion.text.split("|||")
+    if description.to_s.strip.empty?
+      @errors << 'Could not extract enough readable content from this page to summarize it.'
+      return { title: nil, description: nil, errors: @errors }
+    end
+
     { title: title, description: description, errors: @errors }
   rescue OmniAI::HTTPError => e
     @errors << JSON.parse(e.response.body)["message"]
@@ -75,20 +88,36 @@ class UrlsTitleAndDescriptionService
 
   private
 
-  # Fetch the page and reduce it to readable text: drop scripts, styles, and
-  # other non-content nodes, collapse whitespace, and cap the length so a large
-  # page does not blow past the model's token limits.
+  # Fetch the page and reduce it to readable text: keep the title and key
+  # metadata (some pages, such as YouTube, render their real content via
+  # JavaScript and only expose it through og:/description meta tags), drop
+  # scripts, styles, and other non-content nodes, collapse whitespace, and cap
+  # the length so a large page does not blow past the model's token limits.
   def page_text
     html = fetch_url_content
     return if html.nil?
 
     doc = Nokogiri::HTML(html)
     title = doc.at('title')&.text.to_s.strip
+    meta = meta_description(doc)
     doc.search('script, style, noscript, svg, iframe, template, link, meta').remove
     body = doc.at('body') || doc
-    text = body.text.gsub(/\s+/, ' ').strip
-    text = "Title: #{title}\n\n#{text}" unless title.empty?
-    text[0, MAX_CONTENT_CHARS]
+    body_text = body.text.gsub(/\s+/, ' ').strip
+
+    sections = []
+    sections << "Title: #{title}" unless title.empty?
+    sections << meta unless meta.empty?
+    sections << body_text unless body_text.empty?
+    sections.join("\n\n")[0, MAX_CONTENT_CHARS]
+  end
+
+  # Pull the page's og:/description meta tags into a readable block so JS-heavy
+  # pages still provide the model something to summarize.
+  def meta_description(doc)
+    META_SELECTORS.filter_map do |label, selector|
+      content = doc.at(selector)&.attr('content').to_s.strip
+      "#{label}: #{content}" unless content.empty?
+    end.join("\n")
   end
 
   def title_rule

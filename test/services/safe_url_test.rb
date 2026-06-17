@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'resolv'
 
 class SafeUrlTest < ActiveSupport::TestCase
   test 'allows public https URLs' do
@@ -52,20 +51,20 @@ class SafeUrlTest < ActiveSupport::TestCase
   end
 
   test 'blocks hostnames that resolve to a private address' do
-    Resolv.stub(:getaddresses, ['10.0.0.5']) do
-      refute SafeUrl.new('https://internal.example.com/').safe?
-    end
+    url = SafeUrl.new('https://internal.example.com/')
+    url.define_singleton_method(:resolve) { |_host| ['10.0.0.5'] }
+    refute url.safe?
   end
 
   test 'allows hostnames that resolve to a public address' do
-    Resolv.stub(:getaddresses, ['93.184.216.34']) do
-      assert SafeUrl.new('https://example.com/').safe?
-    end
+    url = SafeUrl.new('https://example.com/')
+    url.define_singleton_method(:resolve) { |_host| ['93.184.216.34'] }
+    assert url.safe?
   end
 
   test 'blocks hostnames that cannot be resolved' do
-    Resolv.stub(:getaddresses, []) do
-      refute SafeUrl.new('https://nonexistent.invalid/').safe?
-    end
+    url = SafeUrl.new('https://nonexistent.invalid/')
+    url.define_singleton_method(:resolve) { |_host| [] }
+    refute url.safe?
   end
 end

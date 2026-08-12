@@ -13,6 +13,7 @@ class Post < ApplicationRecord
 
   scope :approved, -> { where(approved: true, declined: false) }
   scope :not_yet_approved, -> { where(approved: false, declined: false) }
+  scope :scheduled, -> { approved.where('scheduled_for > ?', Time.zone.now).order(scheduled_for: :asc) }
   scope :declined, -> { where(declined: true) }
 
   before_validation(on: :create) do

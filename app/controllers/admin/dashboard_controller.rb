@@ -4,7 +4,8 @@ module Admin
     layout 'layouts/admin'
 
     def show
-      @posts = Post.not_yet_approved.order(created_at: :asc)
+      @pending_posts = Post.not_yet_approved.order(created_at: :asc)
+      @scheduled_posts = Post.scheduled
     end
   end
 end

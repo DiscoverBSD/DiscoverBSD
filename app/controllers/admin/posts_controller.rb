@@ -14,11 +14,14 @@ module Admin
       end
     end
 
-    def approve_and_toot
+    def schedule_approval
       post = Post.find(params[:id])
-      post.update(post_params)
+      post.assign_attributes(approval_params)
+
       if post.valid?
-        TootPostJob.perform_later(post)
+        PostApprovalScheduler.new(
+          post: post, admin: current_user, mode: requested_schedule_mode
+        ).perform
         render json: {}, status: 200
       else
         render json: {
@@ -28,6 +31,16 @@ module Admin
     end
 
     private
+
+    def approval_params
+      params.require(:post).permit(
+        :title, :url, :description, :newsletter_part
+      )
+    end
+
+    def requested_schedule_mode
+      params.require(:post).permit(:schedule_mode)[:schedule_mode]
+    end
 
     def post_params
       params.require(:post).permit(:title, :url, :description,

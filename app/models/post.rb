@@ -12,8 +12,9 @@ class Post < ApplicationRecord
   validates :newsletter_part, inclusion: { in: self::NEWSLETTER_PARTS }
 
   scope :approved, -> { where(approved: true, declined: false) }
+  scope :published, -> { approved.where('scheduled_for IS NULL OR scheduled_for <= ?', Time.zone.now) }
   scope :not_yet_approved, -> { where(approved: false, declined: false) }
-  scope :declined, -> { where(declined: true) }
+  scope :scheduled, -> { approved.where('scheduled_for > ?', Time.zone.now).order(scheduled_for: :asc) }
 
   before_validation(on: :create) do
     self.slug = SecureRandom.hex(5) unless self.slug.present?

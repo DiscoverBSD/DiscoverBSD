@@ -26,7 +26,7 @@ class PostsController < ApplicationController
   end
 
   def feed
-    @posts = Post.approved.order(created_at: :desc).limit(50)
+    @posts = Post.published.order(created_at: :desc).limit(50)
     render template: 'posts/feed', formats: :atom, layout: false
   end
 

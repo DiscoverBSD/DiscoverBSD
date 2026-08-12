@@ -11,7 +11,7 @@
       </div>
     </div>
     <h1 class="title is-4">Posts to approve</h1>
-    <% @posts.each do |post|%>
+    <% @pending_posts.each do |post|%>
       <div class="box">
         <div class="columns">
           <div class="column is-three-quarters">
@@ -51,13 +51,16 @@
             <% end %>
           </div>
           <div class="column">
-            <%= form_for post, url: approve_and_toot_admin_post_path(post), method: :post, data: {controller: "approve-post"} do |f| %>
-              <%= f.hidden_field :approved_at, value: Time.zone.now %>
-              <%= f.hidden_field :approved_by_id, value: current_user.id %>
-              <%= f.hidden_field :approved, value: true %>
+            <%= form_for post, url: schedule_approval_admin_post_path(post), method: :post, data: {controller: "approve-post"} do |f| %>
+              <div class="field">
+                <%= f.label :schedule_mode, "Approval timing", class: "label is-small" %>
+                <div class="control">
+                  <%= f.select :schedule_mode, [["Post now", "now"], ["Schedule later", "later"]], { selected: "later" }, class: "select is-small" %>
+                </div>
+              </div>
               <div class="field is-grouped is-grouped-centered">
                 <div class="control">
-                  <%= f.submit "Approve and toot", class:"button is-success is-big", data: {action: "click->approve-post#submit"} %>
+                  <%= f.submit "Approve", class:"button is-success is-big", data: {action: "click->approve-post#submit"} %>
                 </div>
               </div>
               <div>
@@ -81,6 +84,13 @@
           </div>
         </div>
 
+      </div>
+    <% end %>
+    <h1 class="title is-4">Scheduled posts</h1>
+    <% @scheduled_posts.each do |post| %>
+      <div class="box">
+        <strong><%= post.title %></strong>
+        <p class="help">Scheduled for <%= post.scheduled_for.to_fs(:long) %></p>
       </div>
     <% end %>
   </div>

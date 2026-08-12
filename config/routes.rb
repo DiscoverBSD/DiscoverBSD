@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   end
   namespace :admin do
     resources :posts, only: [:update] do
-      post :approve_and_toot, on: :member
+      post :schedule_approval, on: :member
     end
     get 'dashboard/show'
     get 'newsletter/show'

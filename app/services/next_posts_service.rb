@@ -26,18 +26,18 @@ class NextPostsService
   def posts_from_number_of_days
     end_date = @end_date.end_of_day
     start_date = (end_date - @number_of_days.days).beginning_of_day
-    @posts_from_number_of_days ||= Post.approved.where(created_at: start_date..end_date).order(created_at: :desc)
+    @posts_from_number_of_days ||= Post.published.where(created_at: start_date..end_date).order(created_at: :desc)
   end
 
   # posts based on number of posts
   #  plus we also include all posts from last day
   def posts_from_minumum_of_posts
-    oldest_post = Post.approved.where('created_at < ?', @end_date.beginning_of_day)
+    oldest_post = Post.published.where('created_at < ?', @end_date.beginning_of_day)
       .order(created_at: :desc)
       .limit(@minimum_of_posts).last
     return [] unless oldest_post.present?
     start_date = oldest_post.created_at.beginning_of_day
     end_date = @end_date.end_of_day
-    @posts_from_minumum_of_posts ||= Post.approved.where(created_at: start_date..end_date).order(created_at: :desc)
+    @posts_from_minumum_of_posts ||= Post.published.where(created_at: start_date..end_date).order(created_at: :desc)
   end
 end

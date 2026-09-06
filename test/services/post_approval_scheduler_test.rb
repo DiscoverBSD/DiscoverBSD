@@ -42,7 +42,14 @@ class PostApprovalSchedulerTest < ActiveSupport::TestCase
   test 'schedules one hour after the latest approved cutoff' do
     latest = posts(:one)
     travel_to Time.zone.parse('2026-08-12 10:00:00') do
-      latest.update!(scheduled_for: 3.hours.from_now)
+      Post.approved.update_all(
+        approved_at: Time.zone.parse('2026-08-11 09:00:00'),
+        scheduled_for: nil
+      )
+      latest.update!(
+        approved_at: Time.zone.parse('2026-08-12 09:00:00'),
+        scheduled_for: 3.hours.from_now
+      )
       PostApprovalScheduler.new(post: @post, admin: @admin, mode: 'later').perform
 
       assert_equal latest.scheduled_for + 1.hour, @post.reload.scheduled_for

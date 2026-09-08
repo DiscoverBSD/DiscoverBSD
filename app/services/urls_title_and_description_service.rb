@@ -111,10 +111,16 @@ class UrlsTitleAndDescriptionService
   # JavaScript and only expose it through og:/description meta tags), drop
   # scripts, styles, and other non-content nodes, collapse whitespace, and cap
   # the length so a large page does not blow past the model's token limits.
+  #
+  # Memoized so a chat_with_fallback retry reuses the same fetch instead of hitting the URL again.
   def page_text
-    html = fetch_url_content
-    return if html.nil?
+    return @page_text if defined?(@page_text)
 
+    html = fetch_url_content
+    @page_text = html.nil? ? nil : build_page_text(html)
+  end
+
+  def build_page_text(html)
     doc = Nokogiri::HTML(html)
     title = doc.at('title')&.text.to_s.strip
     meta = meta_description(doc)

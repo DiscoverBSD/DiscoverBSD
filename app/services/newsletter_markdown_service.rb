@@ -1,9 +1,16 @@
 # Generate markdown for the newsletter
 class NewsletterMarkdownService
 include ApplicationHelper
-  def initialize(posts, client: nil)
+include AiChatFallback
+  def initialize(posts, client: nil, fallback_client: nil)
     @posts = posts
-    @client = client || OmniAI::Mistral::Client.new
+    if client
+      @client = client
+      @fallback_client = fallback_client
+    else
+      @client = OmniAI::Google::Client.new
+      @fallback_client = OmniAI::Mistral::Client.new
+    end
   end
 
   def newsletter_markdown
@@ -96,7 +103,7 @@ Thanks for reading and see you next week! Stay safe!
   end
 
   def newsletter_summary(content)
-    completion = @client.chat do |prompt|
+    completion = chat_with_fallback(model: OmniAI::Google::Chat::Model::GEMINI_3_6_FLASH) do |prompt|
       prompt.system <<~SYSTEM
         Task:  
 

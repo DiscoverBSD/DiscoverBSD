@@ -1,9 +1,11 @@
 # This service is used to get the title and description of the url's content.
 # Get the url content and generate title and description with AI
 class UrlsTitleAndDescriptionService
+  include AiChatFallback
+
   # Cap how much page text is sent to the model. Raw HTML for a single page can
   # be hundreds of KB; trimming to readable text keeps requests well under
-  # Mistral's per-minute token limits.
+  # the model's per-minute token limits.
   MAX_CONTENT_CHARS = 20_000
 
   # Server-rendered metadata that carries the real title/summary on JS-heavy
@@ -14,9 +16,15 @@ class UrlsTitleAndDescriptionService
     'description' => "meta[name='description']"
   }.freeze
 
-  def initialize(url, client: nil)
+  def initialize(url, client: nil, fallback_client: nil)
     @url = url
-    @client = client || OmniAI::Mistral::Client.new
+    if client
+      @client = client
+      @fallback_client = fallback_client
+    else
+      @client = OmniAI::Google::Client.new
+      @fallback_client = OmniAI::Mistral::Client.new
+    end
     @errors = []
   end
 
@@ -35,7 +43,7 @@ class UrlsTitleAndDescriptionService
   end
 
   def generate_title_and_description
-    completion = @client.chat do |prompt|
+    completion = chat_with_fallback(model: OmniAI::Google::Chat::Model::GEMINI_3_6_FLASH) do |prompt|
       prompt.system <<~SYSTEM
         You write a single newsletter item (title + summary) for DiscoverBSD.com and the BSD Weekly (bsdweekly.com) newsletter. Match the style of Ruby Weekly / Node Weekly: short, concrete, engaging blurbs that tell a BSD reader what the linked page is and why it is worth their click.
 
@@ -85,11 +93,18 @@ class UrlsTitleAndDescriptionService
 
     { title: title, description: description, errors: @errors }
   rescue OmniAI::HTTPError => e
-    @errors << JSON.parse(e.response.body)["message"]
+    @errors << error_message(e)
     { title: nil, description: nil, errors: @errors }
   end
 
   private
+
+  # Error body shape differs per provider, so fall back to e.message if it can't be parsed.
+  def error_message(error)
+    JSON.parse(error.response.body)['message']
+  rescue JSON::ParserError, TypeError, NoMethodError
+    error.message
+  end
 
   # Fetch the page and reduce it to readable text: keep the title and key
   # metadata (some pages, such as YouTube, render their real content via

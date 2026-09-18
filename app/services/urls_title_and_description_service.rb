@@ -43,7 +43,11 @@ class UrlsTitleAndDescriptionService
   end
 
   def generate_title_and_description
-    completion = chat_with_fallback(model: OmniAI::Google::Chat::Model::GEMINI_3_6_FLASH) do |prompt|
+    completion = chat_with_fallback(
+      model: OmniAI::Google::Chat::Model::GEMINI_3_6_FLASH,
+      provider_name: 'Google Gemini',
+      fallback_provider_name: 'Mistral'
+    ) do |prompt|
       prompt.system <<~SYSTEM
         You write a single newsletter item (title + summary) for DiscoverBSD.com and the BSD Weekly (bsdweekly.com) newsletter. Match the style of Ruby Weekly / Node Weekly: short, concrete, engaging blurbs that tell a BSD reader what the linked page is and why it is worth their click.
 
@@ -92,6 +96,9 @@ class UrlsTitleAndDescriptionService
     end
 
     { title: title, description: description, errors: @errors }
+  rescue AiChatFallback::ProviderError => e
+    @errors << e.failures.map { |failure| "#{failure[:provider]}: #{error_message(failure[:error])}" }.join('; ')
+    { title: nil, description: nil, errors: @errors }
   rescue OmniAI::HTTPError => e
     @errors << error_message(e)
     { title: nil, description: nil, errors: @errors }

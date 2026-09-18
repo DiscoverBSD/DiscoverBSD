@@ -16,6 +16,16 @@ class UrlsTitleAndDescriptionServiceTest < ActiveSupport::TestCase
     end
   end
 
+  class FailingClient
+    def initialize(message)
+      @message = message
+    end
+
+    def chat(*_args, **_kwargs)
+      raise StandardError, @message
+    end
+  end
+
   def build_service(html:, model_text: 'Title|||Summary', url: 'https://example.com/post')
     service = UrlsTitleAndDescriptionService.new(url, client: FakeClient.new(model_text))
     service.define_singleton_method(:fetch_url_content) { html }
@@ -99,5 +109,49 @@ class UrlsTitleAndDescriptionServiceTest < ActiveSupport::TestCase
     assert_nil result[:title]
     assert_nil result[:description]
     assert_includes result[:errors], 'Could not extract enough readable content from this page to summarize it.'
+  end
+
+  test 'generate_title_and_description uses the fallback when Google Gemini fails' do
+    service = UrlsTitleAndDescriptionService.new(
+      'https://example.com/post',
+      client: FailingClient.new('Google unavailable'),
+      fallback_client: FakeClient.new('Fallback title|||Fallback summary')
+    )
+    service.define_singleton_method(:fetch_url_content) { '<html><body>x</body></html>' }
+
+    result = service.generate_title_and_description
+
+    assert_equal 'Fallback title', result[:title]
+    assert_equal 'Fallback summary', result[:description]
+    assert_empty result[:errors]
+  end
+
+  test 'generate_title_and_description identifies a failed Google Gemini request' do
+    service = UrlsTitleAndDescriptionService.new(
+      'https://example.com/post',
+      client: FailingClient.new('Google unavailable')
+    )
+    service.define_singleton_method(:fetch_url_content) { '<html><body>x</body></html>' }
+
+    result = service.generate_title_and_description
+
+    assert_nil result[:title]
+    assert_nil result[:description]
+    assert_equal ['Google Gemini: Google unavailable'], result[:errors]
+  end
+
+  test 'generate_title_and_description identifies failed Google Gemini and Mistral requests' do
+    service = UrlsTitleAndDescriptionService.new(
+      'https://example.com/post',
+      client: FailingClient.new('Google unavailable'),
+      fallback_client: FailingClient.new('Mistral unavailable')
+    )
+    service.define_singleton_method(:fetch_url_content) { '<html><body>x</body></html>' }
+
+    result = service.generate_title_and_description
+
+    assert_nil result[:title]
+    assert_nil result[:description]
+    assert_equal ['Google Gemini: Google unavailable; Mistral: Mistral unavailable'], result[:errors]
   end
 end

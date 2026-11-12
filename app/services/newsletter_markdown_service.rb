@@ -114,7 +114,7 @@ Thanks for reading and see you next week! Stay safe!
             - pick maximum of 3 posts altogether
             - always use "and more." at the end of the summary
             - Do not specifically mention if no releases or security announcements are present.
-        3. Output Format: Text of the summary
+        3. Output Format: Text of the summary.
 
         Return only plain text, no HTML or other formatting that could be used to hijack the website.
         SYSTEM

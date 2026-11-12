@@ -112,7 +112,7 @@ Thanks for reading and see you next week! Stay safe!
             - Summarize the key points of the content in one sentence of maximum 150 characters.
             - Example: DiscoverBSD updates, NetBSD satelites, BSD 2024 highlights and more.
             - pick maximum of 3 posts altogether
-            - always use "and more" at the end of the summary
+            - always use "and more." at the end of the summary
             - Do not specifically mention if no releases or security announcements are present.
         3. Output Format: Text of the summary
 

@@ -90,7 +90,7 @@
     <% @scheduled_posts.each do |post| %>
       <div class="box">
         <strong><%= post.title %></strong>
-        <p class="help">Scheduled for <%= post.scheduled_for.to_fs(:long) %></p>
+        <p class="help">Scheduled for <%= post.scheduled_for.to_fs(:long) %>, Newsletter part: <%= post.newsletter_part %></p>
       </div>
     <% end %>
   </div>
